@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRD 演示 · 客户智慧经营中枢 v2.1.0 PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{
+--ink:#0A1628;--ink-2:#0F2742;--ink-3:#1E3A5F;--ink-4:#2D4F7C;
+--gold:#C9A84C;--gold-2:#E8D48B;--gold-deep:#9A7B2C;--gold-glow:rgba(201,168,76,.18);
+--cream:#F5EFE0;--paper:#FAF7F0;--bg:#F4F1EA;
+--purple:#6D5BBA;--teal:#0E7490;--rose:#E11D48;--emerald:#16A34A;--amber:#D97706;--sky:#0284C7;
+--ink-line:rgba(15,40,80,.08);--ink-line-2:rgba(15,40,80,.14);
+--white:#FFFFFF;
+--t1:#0A1628;--t2:#3D4A5C;--t3:#6B7785;--t4:#A0A8B5;
+--shadow-2:0 2px 8px rgba(15,40,80,.06),0 12px 40px rgba(15,40,80,.04);
+--shadow-3:0 8px 24px rgba(15,40,80,.08),0 24px 80px rgba(15,40,80,.06);
+--serif:"Fraunces","Noto Serif SC",Georgia,serif;
+--sans:"Inter","Noto Sans SC",-apple-system,sans-serif;
+--mono:"JetBrains Mono",Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:var(--sans);background:var(--bg);color:var(--t1);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;cursor:pointer;background:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:100;background:rgba(10,22,40,.85);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{max-width:1320px;margin:0 auto;height:100%;padding:0 40px;display:flex;align-items:center;gap:32px}
+.nav-brand{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:800;box-shadow:0 4px 16px rgba(201,168,76,.3)}
+.nav-title{color:#fff;font-weight:600;font-size:14px;letter-spacing:-.01em}
+.nav-sub{color:rgba(255,255,255,.45);font-size:11px;margin-top:1px;font-family:var(--mono);letter-spacing:.05em}
+.nav-pro{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--ink);font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;margin-left:6px;letter-spacing:.08em;vertical-align:middle}
+.nav-menu{display:flex;gap:2px;flex:1;justify-content:center}
+.nav-link{position:relative;padding:8px 16px;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;border-radius:8px;transition:.3s;display:flex;align-items:center;gap:8px}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.04)}
+.nav-link.active{color:var(--gold)}
+.nav-link.active::after{content:"";position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);width:24px;height:2px;background:var(--gold);border-radius:2px}
+.nav-link .nl-num{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);font-weight:600}
+.nav-link.active .nl-num{color:var(--gold)}
+.nav-act{display:flex;gap:8px;flex-shrink:0}
+.nav-btn{padding:7px 14px;border-radius:8px;font-size:12px;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1);transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.nav-btn:hover{color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+.nav-btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--ink);border:0;font-weight:700}
+.nav-btn-gold:hover{transform:translateY(-1px);color:var(--ink)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;background:radial-gradient(ellipse 120% 80% at 80% 10%,rgba(201,168,76,.12),transparent 50%),radial-gradient(ellipse 80% 60% at 10% 90%,rgba(109,91,186,.08),transparent 50%),linear-gradient(180deg,#0A1628 0%,#0F2742 100%);overflow:hidden;padding-top:64px}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-inner{max-width:1320px;margin:0 auto;padding:80px 40px 120px;position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;padding:8px 18px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);color:var(--gold);border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:32px;font-family:var(--mono)}
+.hero-eyebrow .he-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h1{font-family:var(--serif);font-weight:500;font-size:88px;line-height:1.02;letter-spacing:-.04em;color:#fff;max-width:1100px;margin-bottom:28px}
+.hero-h1 .acc{font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:20px;line-height:1.6;color:rgba(255,255,255,.65);max-width:720px;margin-bottom:48px;font-weight:300}
+.hero-sub b{color:#fff;font-weight:500}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:64px}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.75);border-radius:99px;font-size:12px;font-weight:500;backdrop-filter:blur(12px)}
+.hero-chip i{color:var(--gold);font-size:11px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
+.hs-num{font-family:var(--serif);font-size:56px;font-weight:500;line-height:1;letter-spacing:-.03em;color:#fff;display:flex;align-items:baseline;gap:4px}
+.hs-num .un{font-family:var(--sans);font-size:22px;font-weight:300;color:var(--gold);margin-left:2px}
+.hs-num.gold{color:var(--gold)}
+.hs-lbl{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-top:14px;margin-bottom:6px}
+.hs-desc{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5}
+.hs-desc b{color:var(--gold-2);font-weight:600}
+
+/* LINEAGE */
+.lineage{padding:64px 0;background:var(--paper);border-top:1px solid rgba(15,40,80,.06);border-bottom:1px solid rgba(15,40,80,.06)}
+.lineage-inner{max-width:1320px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:center}
+.lin-label{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--t3);text-transform:uppercase}
+.lin-title{font-family:var(--serif);font-size:32px;font-weight:500;letter-spacing:-.02em;margin-top:12px;color:var(--ink)}
+.lin-flow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.lin-node{flex:1;min-width:160px;padding:18px 22px;background:#fff;border:1px solid var(--ink-line);border-radius:12px;position:relative}
+.lin-node.cur{background:linear-gradient(135deg,var(--ink-3),var(--ink-2));color:#fff;border:0;box-shadow:var(--shadow-3)}
+.lin-node.cur::before{content:"NOW";position:absolute;top:-10px;right:14px;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:99px}
+.ln-tag{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.1em}
+.lin-node.cur .ln-tag{color:var(--gold)}
+.ln-name{font-family:var(--serif);font-size:20px;font-weight:600;margin-top:6px;letter-spacing:-.01em}
+.ln-desc{font-size:11px;color:var(--t3);margin-top:4px;line-height:1.5}
+.lin-node.cur .ln-desc{color:rgba(255,255,255,.65)}
+.lin-arrow{color:var(--t4);font-size:16px;flex-shrink:0}
+
+/* SECTION SHELL */
+.sec{padding:120px 0;position:relative}
+.sec.dark{background:linear-gradient(180deg,#0A1628 0%,#0F2742 100%);color:#fff}
+.sec.dark .s-title{color:#fff}
+.sec.dark .s-sub{color:rgba(255,255,255,.6)}
+.sec-inner{max-width:1320px;margin:0 auto;padding:0 40px}
+.s-head{margin-bottom:80px;display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:end}
+.s-num{font-family:var(--serif);font-size:200px;font-weight:300;line-height:.85;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--ink-line-2)}
+.sec.dark .s-num{-webkit-text-stroke:1.5px rgba(255,255,255,.12)}
+.s-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:18px}
+.sec.dark .s-eyebrow{color:var(--gold)}
+.s-eyebrow::before{content:"";width:32px;height:1px;background:var(--gold)}
+.s-title{font-family:var(--serif);font-size:64px;font-weight:500;line-height:1.05;letter-spacing:-.03em;color:var(--ink);margin-bottom:24px}
+.s-title em{font-style:italic;color:var(--gold-deep)}
+.sec.dark .s-title em{color:var(--gold)}
+.s-sub{font-size:17px;line-height:1.7;color:var(--t2);max-width:760px}
+.s-sub b{color:var(--ink);font-weight:600}
+.sec.dark .s-sub b{color:#fff}
+
+/* PERSONA TYPOLOGY */
+.typology{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-line);border:1px solid var(--ink-line);border-radius:14px;overflow:hidden;margin-bottom:48px}
+.typo{padding:16px 18px;background:#fff;cursor:pointer;transition:.25s;display:flex;flex-direction:column;gap:6px;min-height:108px}
+.typo:hover{background:var(--paper)}
+.typo.act{background:linear-gradient(180deg,var(--ink-3),var(--ink-2));color:#fff}
+.typo .tnum{font-family:var(--mono);font-size:10px;color:var(--t4);font-weight:600;letter-spacing:.1em}
+.typo.act .tnum{color:var(--gold)}
+.typo .ttype{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);font-weight:600}
+.typo.act .ttype{color:rgba(255,255,255,.5)}
+.typo .tname{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-top:2px}
+.typo .ttag{font-size:10px;color:var(--t3);margin-top:auto;display:flex;gap:6px;flex-wrap:wrap;padding-top:4px}
+.typo.act .ttag{color:rgba(255,255,255,.6)}
+.typo .ttag span{padding:1px 6px;background:var(--bg);border-radius:4px}
+.typo.act .ttag span{background:rgba(255,255,255,.08)}
+
+/* CHAPTER */
+.chapter{display:grid;grid-template-columns:380px 1fr;gap:60px;padding:60px 0;border-top:1px solid var(--ink-line)}
+.chapter:first-of-type{border-top:0}
+.ch-aside{position:sticky;top:90px;align-self:start}
+.ch-num{font-family:var(--serif);font-size:22px;color:var(--gold-deep);font-weight:600;letter-spacing:.05em}
+.ch-avatar{width:300px;height:340px;border-radius:16px;background:linear-gradient(160deg,var(--ink-3),var(--ink-2));position:relative;overflow:hidden;margin:24px 0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;color:#fff;box-shadow:var(--shadow-3)}
+.ch-avatar.p1{background:linear-gradient(160deg,#1E3A5F,#0F2742)}
+.ch-avatar.p2{background:linear-gradient(160deg,#9A7B2C,#5B4416)}
+.ch-avatar.p3{background:linear-gradient(160deg,#16A34A,#0E5C2E)}
+.ch-avatar::before{content:"";position:absolute;top:-30%;right:-30%;width:280px;height:280px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);border-radius:50%}
+.ch-icon-big{position:absolute;top:32px;left:32px;width:60px;height:60px;background:rgba(255,255,255,.12);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(255,255,255,.95);backdrop-filter:blur(8px)}
+.ch-pos{position:relative;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--gold-2);text-transform:uppercase;margin-bottom:8px}
+.ch-fullname{position:relative;font-family:var(--serif);font-size:36px;font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.ch-role{position:relative;font-size:13px;color:rgba(255,255,255,.7);margin-top:6px}
+.ch-quote{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--t2);line-height:1.6;padding:20px 24px;border-left:3px solid var(--gold);background:var(--paper);border-radius:0 8px 8px 0;position:relative}
+.ch-body{display:flex;flex-direction:column;gap:36px}
+.ch-headline{font-family:var(--serif);font-size:48px;font-weight:500;line-height:1.05;letter-spacing:-.02em;color:var(--ink)}
+.ch-headline em{font-style:italic;color:var(--gold-deep)}
+.ch-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink-line);border-bottom:1px solid var(--ink-line);padding:18px 0}
+.ch-mb{display:flex;flex-direction:column;gap:4px;padding:0 20px;border-right:1px solid var(--ink-line)}
+.ch-mb:last-child{border-right:0}
+.ch-mb:first-child{padding-left:0}
+.cmb-l{font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:var(--t3);text-transform:uppercase}
+.cmb-v{font-size:14px;font-weight:600;color:var(--ink)}
+.ch-split{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.ch-col-h{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);font-weight:600;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--ink-line)}
+.ch-col-h.need{color:var(--emerald);border-bottom-color:var(--emerald)}
+.ch-col-h.pain{color:var(--rose);border-bottom-color:var(--rose)}
+.ch-list{display:flex;flex-direction:column;gap:14px}
+.ch-li{display:flex;gap:14px;align-items:flex-start;font-size:14px;line-height:1.6;color:var(--t2)}
+.ch-li-num{flex-shrink:0;width:22px;height:22px;border-radius:6px;background:rgba(22,163,74,.1);color:var(--emerald);font-family:var(--mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pain .ch-li-num{background:rgba(225,29,72,.1);color:var(--rose)}
+.ch-li b{color:var(--ink);font-weight:600}
+.ch-flow{padding:24px;background:linear-gradient(135deg,var(--paper),var(--bg));border-radius:14px;border:1px solid var(--ink-line)}
+.cf-l{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--gold-deep);text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.cf-steps{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cf-step{flex:1;min-width:80px;padding:14px 12px;background:#fff;border-radius:10px;border:1px solid var(--ink-line);text-align:center}
+.cf-step .cs-n{font-family:var(--mono);font-size:9px;color:var(--gold-deep);letter-spacing:.1em;font-weight:700}
+.cf-step .cs-t{font-family:var(--serif);font-size:14px;font-weight:600;margin-top:4px;color:var(--ink)}
+.cf-arr{color:var(--t4);font-size:12px}
+.cp-l{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--t3);text-transform:uppercase;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.cp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cp-page{padding:14px 16px;background:#fff;border:1px solid var(--ink-line);border-radius:10px;display:flex;align-items:center;gap:12px;transition:.2s;cursor:pointer}
+.cp-page:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.cp-page i{color:var(--gold-deep);font-size:14px;width:20px;text-align:center}
+.cp-page span{font-size:13px;font-weight:500}
+.cp-page .pg-tag{margin-left:auto;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:8px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:.1em}
+.ch-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ch-kpi-c{padding:16px 18px;background:#fff;border:1px solid var(--ink-line);border-radius:10px;border-left:3px solid var(--gold)}
+.ckl{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase}
+.ckv{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);margin-top:6px;letter-spacing:-.02em}
+.ckv .ckvu{font-size:12px;color:var(--t3);font-weight:400;margin-left:2px}
+.ckd{font-size:10px;color:var(--t3);margin-top:2px}
+.sup-group{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;padding-top:60px;border-top:2px dashed var(--ink-line)}
+.sup-h{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.sup-h .sh-l{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.15em;text-transform:uppercase;font-weight:600}
+.sup-h::after{content:"";flex:1;height:1px;background:var(--ink-line)}
+.sup-card{padding:24px 28px;background:#fff;border:1px solid var(--ink-line);border-radius:14px;display:flex;gap:20px;align-items:center;transition:.3s}
+.sup-card:hover{border-color:var(--gold);box-shadow:var(--shadow-2);transform:translateY(-2px)}
+.sup-ico{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--paper),var(--bg));display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--ink-3);flex-shrink:0}
+.sup-name{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:-.01em}
+.sup-tag{display:inline-block;font-family:var(--mono);font-size:9px;color:var(--gold-deep);background:var(--gold-glow);padding:2px 6px;border-radius:4px;margin-left:8px;letter-spacing:.1em;font-weight:700}
+.sup-d{font-size:13px;color:var(--t2);margin-top:6px;line-height:1.5}
+
+/* SCENARIOS */
+.sn{margin-bottom:80px}
+.sn:last-child{margin-bottom:0}
+.sn-cover{display:grid;grid-template-columns:1fr 1.6fr;border-radius:20px;overflow:hidden;box-shadow:var(--shadow-3);min-height:380px}
+.sn-cover-l{background:linear-gradient(160deg,var(--ink-3) 0%,var(--ink-2) 60%,var(--ink) 100%);padding:48px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.sn-cover-l::before{content:"";position:absolute;top:0;right:0;width:280px;height:280px;background:radial-gradient(circle,rgba(201,168,76,.15),transparent 70%);border-radius:50%}
+.sn-num{font-family:var(--serif);font-weight:300;font-size:140px;line-height:.85;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(201,168,76,.4);position:relative}
+.sn-title{font-family:var(--serif);font-size:36px;font-weight:500;line-height:1.15;letter-spacing:-.02em;position:relative;margin-bottom:14px}
+.sn-title em{font-style:italic;color:var(--gold-2)}
+.sn-desc{font-size:14px;color:rgba(255,255,255,.7);line-height:1.7;position:relative;margin-bottom:24px}
+.sn-roi{position:relative;display:inline-flex;align-items:center;gap:14px;padding:14px 22px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--ink);border-radius:99px;font-weight:700;align-self:flex-start;box-shadow:0 8px 32px rgba(201,168,76,.3)}
+.sn-roi b{font-family:var(--serif);font-size:18px;font-weight:700}
+.sn-cover-r{padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--ink-line);position:relative}
+.sn-cover-r::before{content:"4W1H";position:absolute;top:14px;right:18px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--t4);font-weight:700;z-index:2}
+.sn-w{padding:30px 22px 28px;background:#fff;display:flex;flex-direction:column;gap:8px}
+.sn-w-l{font-family:var(--serif);font-weight:700;font-size:48px;line-height:1;color:var(--gold);letter-spacing:-.04em}
+.sn-w-q{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);font-weight:700;margin-top:4px}
+.sn-w-a{font-size:13px;color:var(--ink);font-weight:500;line-height:1.5;margin-top:8px}
+.sn-w-a b{color:var(--gold-deep);font-weight:700}
+.sn-body{padding:48px 0 0;display:grid;grid-template-columns:1.4fr 1fr;gap:48px}
+.sn-h{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.sn-h-l{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;display:flex;align-items:center;gap:8px}
+.sn-h::after{content:"";flex:1;height:1px;background:var(--ink-line)}
+.sn-step{position:relative;padding:20px 24px 20px 64px;background:#fff;border:1px solid var(--ink-line);border-radius:12px;margin-bottom:14px;transition:.3s}
+.sn-step:hover{border-color:var(--gold);box-shadow:var(--shadow-2);transform:translateX(4px)}
+.sn-step::before{content:"";position:absolute;left:32px;top:50px;bottom:-14px;width:1px;background:var(--ink-line)}
+.sn-step:last-child::before{display:none}
+.sn-step-n{position:absolute;left:18px;top:18px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--ink-3),var(--ink-2));color:var(--gold);font-family:var(--mono);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;box-shadow:0 4px 12px rgba(15,40,80,.15)}
+.sn-step-t{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sn-step-meta{font-family:var(--mono);font-size:10px;color:var(--gold-deep);background:var(--gold-glow);padding:2px 8px;border-radius:4px;letter-spacing:.05em;font-weight:600}
+.sn-step-d{font-size:13px;color:var(--t2);line-height:1.65}
+.sn-step-d b{color:var(--ink);font-weight:600}
+.sn-side{display:flex;flex-direction:column;gap:20px}
+.sn-card{background:#fff;border:1px solid var(--ink-line);border-radius:14px;padding:24px}
+.sn-card.dark{background:linear-gradient(160deg,var(--ink-3),var(--ink-2));color:#fff;border:0}
+.sn-card-h{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.sn-card.dark .sn-card-h{color:var(--gold)}
+.sn-stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--ink-line);font-size:13px;color:var(--t2)}
+.sn-card.dark .sn-stat-row{border-bottom-color:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.sn-stat-row:last-child{border:0}
+.sn-stat-row b{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink)}
+.sn-card.dark .sn-stat-row b{color:#fff}
+.sn-stat-row .pos{color:var(--emerald);font-family:var(--mono);font-weight:700;font-size:13px}
+.sn-tier{display:flex;flex-direction:column;gap:10px}
+.sn-tier-row{padding:12px 14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.sn-tier-row .stl{font-weight:600}
+.sn-tier-row .stn{font-family:var(--mono);font-weight:700}
+.tr-h{background:rgba(22,163,74,.08);color:var(--emerald);border-left:3px solid var(--emerald)}
+.tr-l{background:rgba(2,132,199,.08);color:var(--sky);border-left:3px solid var(--sky)}
+.tr-m{background:rgba(217,119,6,.1);color:var(--amber);border-left:3px solid var(--amber)}
+.tr-x{background:rgba(220,38,38,.08);color:var(--rose);border-left:3px solid var(--rose)}
+.sn-causes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.sn-cause{padding:14px;background:linear-gradient(135deg,var(--paper),var(--bg));border-radius:10px;text-align:center}
+.sn-cause-i{font-size:18px;color:var(--gold-deep);margin-bottom:6px}
+.sn-cause-l{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--ink)}
+.sn-cause-d{font-size:10px;color:var(--t3);margin-top:2px}
+.sn-checks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sn-check{padding:18px 20px;border-radius:12px;background:#fff;border-top:3px solid var(--emerald)}
+.sn-check.bb{border-top-color:var(--sky)}
+.sn-check.cc{border-top-color:var(--purple)}
+.sn-check-n{font-family:var(--serif);font-weight:600;font-size:32px;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.sn-check-l{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--emerald);font-weight:700;margin-top:4px}
+.sn-check.bb .sn-check-l{color:var(--sky)}
+.sn-check.cc .sn-check-l{color:var(--purple)}
+.sn-check-d{font-size:11px;color:var(--t3);margin-top:8px;line-height:1.5}
+.sn-cal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.sn-cal-c{padding:14px;border-radius:10px;border-left:3px solid var(--gold)}
+.sn-cal-c.r{border-left-color:var(--rose);background:rgba(225,29,72,.04)}
+.sn-cal-c.b{border-left-color:var(--sky);background:rgba(2,132,199,.04)}
+.sn-cal-c.p{border-left-color:var(--purple);background:rgba(109,91,186,.04)}
+.sn-cal-c.g{background:var(--gold-glow)}
+.scc-d{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.72);font-weight:700}
+.scc-t{font-family:var(--serif);font-size:15px;font-weight:600;color:#fff;margin-top:5px;letter-spacing:-.01em;line-height:1.3}
+.scc-x{font-size:11.5px;color:rgba(255,255,255,.68);margin-top:5px;line-height:1.5}
+.sn-cal-c{background:rgba(255,255,255,.04)}
+.sn-cal-c.r{background:rgba(225,29,72,.12)}
+.sn-cal-c.b{background:rgba(2,132,199,.12)}
+.sn-cal-c.p{background:rgba(109,91,186,.14)}
+.sn-cal-c.g{background:rgba(201,168,76,.14)}
+
+/* REQUIREMENTS */
+.req-summary{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:48px;border:1px solid var(--ink-line);border-radius:16px;overflow:hidden;background:#fff}
+.req-sum{padding:28px 32px;border-right:1px solid var(--ink-line)}
+.req-sum:last-child{border-right:0}
+.rs-l{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);font-weight:700;margin-bottom:14px}
+.rs-v{font-family:var(--serif);font-size:54px;font-weight:500;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.rs-v .un{font-size:18px;color:var(--t3);margin-left:4px;font-weight:400}
+.rs-d{font-size:13px;color:var(--t2);margin-top:8px}
+.rs-d b{color:var(--gold-deep);font-weight:700}
+.req-tabs{display:flex;gap:6px;background:var(--paper);padding:6px;border-radius:14px;margin-bottom:32px;border:1px solid var(--ink-line);overflow-x:auto}
+.req-tab{padding:14px 22px;border-radius:10px;font-size:13px;font-weight:600;color:var(--t2);cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap;transition:.2s}
+.req-tab:hover{background:#fff;color:var(--ink)}
+.req-tab.act{background:linear-gradient(135deg,var(--ink-3),var(--ink-2));color:#fff;box-shadow:var(--shadow-2)}
+.rt-i{width:24px;height:24px;border-radius:6px;background:rgba(0,0,0,.05);display:flex;align-items:center;justify-content:center;font-size:11px}
+.req-tab.act .rt-i{background:var(--gold);color:var(--ink)}
+.rt-c{font-family:var(--mono);font-size:11px;color:var(--t3);font-weight:700}
+.req-tab.act .rt-c{color:var(--gold-2)}
+.req-pane{display:none}
+.req-pane.act{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.req-page{margin-bottom:24px;background:#fff;border:1px solid var(--ink-line);border-radius:14px;overflow:hidden}
+.rp-head{padding:20px 28px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--ink-line);background:linear-gradient(135deg,var(--paper),#fff)}
+.rp-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--ink-3),var(--ink-2));color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.rp-name{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:-.01em}
+.rp-tag-new{display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px;margin-left:8px;letter-spacing:.1em;vertical-align:middle}
+.rp-meta{margin-left:auto;display:flex;gap:18px;font-size:12px;color:var(--t3)}
+.rp-meta b{color:var(--ink);font-weight:600}
+.rp-row{display:grid;grid-template-columns:90px 1fr 80px;gap:18px;padding:14px 28px;border-bottom:1px solid var(--ink-line);align-items:center;transition:.15s}
+.rp-row:last-child{border-bottom:0}
+.rp-row:hover{background:var(--paper)}
+.rp-id{font-family:var(--mono);font-size:11px;color:var(--t3);font-weight:600;letter-spacing:.05em}
+.rp-desc{font-size:13.5px;color:var(--t1);line-height:1.6}
+.rp-desc b{color:var(--ink);font-weight:600}
+.rp-pri{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.08em;padding:4px 10px;border-radius:99px;justify-self:end}
+.pri-p0{background:rgba(225,29,72,.1);color:var(--rose)}
+.pri-p1{background:rgba(217,119,6,.12);color:var(--amber)}
+.pri-p2{background:rgba(2,132,199,.1);color:var(--sky)}
+.pri-p0::before,.pri-p1::before,.pri-p2::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.req-foot{margin-top:48px;padding:32px 40px;background:linear-gradient(135deg,var(--ink-3),var(--ink-2));color:#fff;border-radius:14px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.rf-l{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em}
+.rf-l em{font-style:italic;color:var(--gold-2)}
+.rf-d{font-size:13px;color:rgba(255,255,255,.65);margin-top:6px}
+.rf-stats{display:flex;gap:32px}
+.rfs{text-align:center}
+.rfs-v{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--gold);letter-spacing:-.02em;line-height:1}
+.rfs-l{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px}
+
+/* ARCHITECTURE */
+.arch-stack{display:flex;flex-direction:column;gap:14px;margin-bottom:80px}
+.arch-l{padding:24px 32px;border-radius:14px;display:flex;align-items:center;gap:24px;border:1px solid rgba(255,255,255,.1)}
+.arch-l-1{background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(154,123,44,.1));border-color:rgba(201,168,76,.3)}
+.arch-l-2{background:rgba(255,255,255,.04)}
+.arch-l-3{background:linear-gradient(135deg,rgba(109,91,186,.2),rgba(109,91,186,.06));border-color:rgba(109,91,186,.35)}
+.arch-l-4{background:rgba(255,255,255,.04)}
+.arch-l-5{background:linear-gradient(135deg,rgba(14,116,144,.18),rgba(14,116,144,.06));border-color:rgba(14,116,144,.3)}
+.al-l{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;font-weight:700;flex-shrink:0;width:120px}
+.al-t{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff;flex-shrink:0;width:160px}
+.al-t i{color:var(--gold);margin-right:8px}
+.al-c{flex:1;display:flex;flex-wrap:wrap;gap:6px}
+.al-pill{padding:5px 11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border-radius:99px;font-size:11.5px;font-weight:500;transition:.2s}
+.al-pill:hover{background:rgba(201,168,76,.2);color:var(--gold-2)}
+.al-pill.gold{background:rgba(201,168,76,.18);color:var(--gold-2)}
+.al-pill.purple{background:rgba(109,91,186,.2);color:#B5A8E8}
+.al-pill.emerald{background:rgba(22,163,74,.18);color:#86EFAC}
+.al-pill.rose{background:rgba(225,29,72,.18);color:#FDA4AF}
+.al-arr{text-align:center;color:rgba(255,255,255,.2);font-size:14px;line-height:1}
+
+/* PROFESSIONAL ARCHITECTURE — Enterprise Style */
+.archx{margin-bottom:80px;position:relative}
+.archx-frame{display:grid;grid-template-columns:1fr 200px;gap:0;align-items:stretch}
+.archx-main{display:flex;flex-direction:column;gap:0;border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;background:rgba(0,0,0,.18)}
+.archx-cross{display:flex;flex-direction:column;gap:0;border:1px solid rgba(201,168,76,.25);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(201,168,76,.08),rgba(201,168,76,.02));margin-left:14px}
+.axc-h{padding:14px 16px;border-bottom:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.1)}
+.axc-h-l{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--gold-2);text-transform:uppercase;font-weight:700}
+.axc-h-t{font-family:var(--serif);font-size:14px;font-weight:600;color:#fff;margin-top:4px}
+.axc-i{padding:14px 16px;border-bottom:1px dashed rgba(255,255,255,.08);display:flex;flex-direction:column;gap:4px}
+.axc-i:last-child{border-bottom:none}
+.axc-i-h{display:flex;align-items:center;gap:8px;font-size:12px;color:#fff;font-weight:600}
+.axc-i-h i{color:var(--gold);font-size:11px;width:14px}
+.axc-i-d{font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.5;padding-left:22px}
+
+.axl{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid rgba(255,255,255,.08);position:relative;min-height:130px}
+.axl:last-child{border-bottom:none}
+.axl.l1{background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02))}
+.axl.l3{background:linear-gradient(90deg,rgba(109,91,186,.14),rgba(109,91,186,.02))}
+.axl.l5{background:linear-gradient(90deg,rgba(14,116,144,.14),rgba(14,116,144,.02))}
+.axl-rail{padding:20px 18px;border-right:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.25);display:flex;flex-direction:column;justify-content:center;gap:6px;position:relative}
+.axl-rail::before{content:'';position:absolute;left:0;top:20px;bottom:20px;width:3px;background:var(--gold);border-radius:2px}
+.axl.l3 .axl-rail::before{background:var(--purple)}
+.axl.l5 .axl-rail::before{background:var(--teal)}
+.axl.l2 .axl-rail::before, .axl.l4 .axl-rail::before{background:rgba(255,255,255,.3)}
+.axl-tag{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;font-weight:700}
+.axl.l3 .axl-tag{color:#B5A8E8}
+.axl.l5 .axl-tag{color:#67E8F9}
+.axl-name{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff;letter-spacing:-0.01em}
+.axl-en{font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase}
+.axl-resp{font-size:11px;color:rgba(255,255,255,.65);line-height:1.5;margin-top:6px}
+.axl-grid{padding:16px;display:grid;gap:10px}
+.axl-g4{grid-template-columns:repeat(4,1fr)}
+.axl-g3{grid-template-columns:repeat(3,1fr)}
+.axl-g6{grid-template-columns:repeat(6,1fr)}
+.axm{padding:12px 12px 11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;display:flex;flex-direction:column;gap:5px;transition:.2s;cursor:default;position:relative}
+.axm:hover{background:rgba(255,255,255,.08);border-color:rgba(201,168,76,.3);transform:translateY(-1px)}
+.axm-h{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#fff;letter-spacing:-0.01em}
+.axm-h i{font-size:11px;color:var(--gold);width:14px;flex-shrink:0}
+.axm-h .axm-num{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;letter-spacing:.05em;font-weight:500}
+.axm-d{font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.5}
+.axm-tech{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.axm-tech span{font-family:var(--mono);font-size:9px;color:rgba(201,168,76,.85);background:rgba(201,168,76,.1);padding:1.5px 5px;border-radius:3px;letter-spacing:.03em;border:1px solid rgba(201,168,76,.2)}
+.axm.purple .axm-h i{color:#B5A8E8}
+.axm.purple{background:linear-gradient(135deg,rgba(109,91,186,.14),rgba(109,91,186,.04));border-color:rgba(109,91,186,.25)}
+.axm.purple .axm-tech span{color:#B5A8E8;background:rgba(109,91,186,.14);border-color:rgba(109,91,186,.3)}
+.axm.emerald{background:linear-gradient(135deg,rgba(22,163,74,.14),rgba(22,163,74,.04));border-color:rgba(22,163,74,.3)}
+.axm.emerald .axm-h i{color:#86EFAC}
+.axm.emerald .axm-h::after{content:'VETO';font-family:var(--mono);font-size:8px;color:#86EFAC;background:rgba(22,163,74,.2);padding:2px 5px;border-radius:3px;letter-spacing:.08em;margin-left:auto;font-weight:700}
+.axm.gold-spec{background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.05));border-color:rgba(201,168,76,.4)}
+.axm.rose-spec{background:linear-gradient(135deg,rgba(225,29,72,.14),rgba(225,29,72,.04));border-color:rgba(225,29,72,.3)}
+.axm.rose-spec .axm-h i{color:#FDA4AF}
+
+/* Inter-layer connector */
+.axl-conn{padding:0;background:rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);display:grid;grid-template-columns:200px 1fr;align-items:center;min-height:36px}
+.axc-rail{padding:8px 18px;border-right:1px solid rgba(255,255,255,.05);font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.18em;text-transform:uppercase}
+.axc-flow{padding:8px 16px;display:flex;align-items:center;gap:10px;font-size:11px;color:rgba(255,255,255,.55);font-family:var(--mono);letter-spacing:.05em}
+.axc-flow i{color:rgba(201,168,76,.5);font-size:10px}
+.axc-flow b{color:rgba(255,255,255,.75);font-weight:600}
+
+/* Legend */
+.archx-legend{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding:12px 18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;font-size:11px;color:rgba(255,255,255,.5);font-family:var(--mono);letter-spacing:.05em}
+.archx-legend .legend-items{display:flex;gap:18px}
+.archx-legend .li{display:flex;align-items:center;gap:6px}
+.archx-legend .li-sw{width:12px;height:12px;border-radius:3px}
+
+@media(max-width:1100px){
+.archx-frame{grid-template-columns:1fr}
+.archx-cross{margin-left:0;margin-top:14px}
+.axl-grid.axl-g6{grid-template-columns:repeat(3,1fr)}
+.axl-grid.axl-g4{grid-template-columns:repeat(2,1fr)}
+}
+
+/* DAG */
+.dag-wrap{margin:60px 0;padding:48px;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 100%);border:1px solid rgba(255,255,255,.08);border-radius:24px;position:relative;overflow:hidden}
+.dag-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(201,168,76,.06),transparent 60%);pointer-events:none}
+.dag-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative}
+.dh-l{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:700}
+.dh-t{font-family:var(--serif);font-size:32px;font-weight:500;color:#fff;letter-spacing:-.02em;margin-top:6px}
+.dh-stats{display:flex;gap:32px;text-align:right}
+.dhs-v{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--gold);line-height:1}
+.dhs-l{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase}
+.dag-input,.dag-output{padding:16px 28px;border-radius:12px;text-align:center;font-size:14px;font-weight:600;color:#fff;letter-spacing:-.01em;display:flex;align-items:center;justify-content:center;gap:14px;position:relative}
+.dag-input{background:linear-gradient(135deg,#1E3A5F,#0F2742);border:1px solid rgba(255,255,255,.1)}
+.dag-output{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--ink);box-shadow:0 12px 40px rgba(201,168,76,.3)}
+.dag-arr{display:flex;justify-content:center;color:var(--gold);font-size:18px;margin:8px 0;line-height:1}
+.dag-stage{margin:14px 0;padding:24px 28px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;position:relative}
+.dag-stage::before{content:attr(data-stage);position:absolute;top:-12px;left:24px;background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:99px;border:1px solid rgba(201,168,76,.3);font-weight:700}
+.dag-st-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dag-st-t{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.dag-st-t em{font-style:italic;color:var(--gold-2);font-weight:400}
+.dag-st-d{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.05em}
+.dag-row{display:grid;gap:10px}
+.dag-r2{grid-template-columns:1fr 1fr}
+.dag-r3{grid-template-columns:1fr 1fr 1fr}
+.agent{padding:14px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;border-left:3px solid var(--purple);transition:.3s;cursor:pointer}
+.agent:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.agent.gold{border-left-color:var(--gold)}
+.agent.cyan{border-left-color:var(--teal)}
+.agent.rose{border-left-color:var(--rose)}
+.agent.special{background:linear-gradient(135deg,rgba(22,163,74,.12),rgba(22,163,74,.04));border:1px solid rgba(22,163,74,.3)}
+.ag-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.ag-n{font-family:var(--serif);font-size:14px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
+.ag-n .ag-i{color:var(--gold);font-size:12px}
+.ag-t{font-family:var(--mono);font-size:10px;color:var(--gold-2);background:rgba(201,168,76,.12);padding:2px 7px;border-radius:99px;letter-spacing:.05em;font-weight:600}
+.ag-d{font-size:11.5px;color:rgba(255,255,255,.65);line-height:1.5}
+.ag-d b{color:#fff;font-weight:600}
+.dag-special{margin:14px 0;padding:18px 24px;background:linear-gradient(135deg,rgba(109,91,186,.12),rgba(109,91,186,.04));border:1.5px dashed rgba(109,91,186,.5);border-radius:14px;font-size:13px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:18px}
+.dag-special i{color:var(--purple);font-size:22px;flex-shrink:0}
+.dag-special b{color:var(--gold-2);font-weight:700}
+.dag-special .dse-meta{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--gold);background:rgba(201,168,76,.1);padding:5px 12px;border-radius:99px;letter-spacing:.05em;flex-shrink:0}
+.dag-foot{margin-top:24px;padding:20px 28px;background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.02));border:1px solid rgba(201,168,76,.18);border-radius:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.df-v{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--gold-2);letter-spacing:-.02em;line-height:1}
+.df-l{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;margin:48px 0}
+.tech-row{padding:18px 24px;background:rgba(10,22,40,.6);display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:center}
+.tr-tl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;font-weight:700}
+.tr-tv{font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.6}
+.tr-tv b{color:#fff;font-weight:600}
+.tr-tv code{font-family:var(--mono);font-size:12px;background:rgba(201,168,76,.12);color:var(--gold-2);padding:2px 8px;border-radius:4px;margin-right:4px}
+.road{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.rd-c{padding:32px 28px;background:rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.08);position:relative;transition:.3s}
+.rd-c:last-child{border-right:0}
+.rd-c.cur{background:linear-gradient(160deg,var(--gold),var(--gold-deep));color:var(--ink)}
+.rd-c.past{opacity:.6}
+.rd-tag{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;font-weight:700}
+.rd-c.cur .rd-tag{color:var(--ink)}
+.rd-c.past .rd-tag{color:rgba(255,255,255,.5)}
+.rd-v{font-family:var(--serif);font-size:32px;font-weight:600;color:#fff;margin-top:8px;letter-spacing:-.02em;line-height:1}
+.rd-c.cur .rd-v{color:var(--ink)}
+.rd-c.past .rd-v{color:rgba(255,255,255,.7)}
+.rd-d{font-size:13px;color:rgba(255,255,255,.7);margin-top:14px;line-height:1.6}
+.rd-c.cur .rd-d{color:rgba(10,22,40,.85)}
+.rd-c.past .rd-d{color:rgba(255,255,255,.5)}
+.rd-now{position:absolute;top:14px;right:14px;background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:9px;font-weight:800;padding:3px 8px;border-radius:99px;letter-spacing:.1em}
+
+/* FOOTER */
+.foot{padding:80px 0 40px;background:linear-gradient(180deg,#0A1628 0%,#000 100%);color:rgba(255,255,255,.7);text-align:center}
+.foot-mark{display:inline-flex;align-items:center;gap:14px;padding:10px 24px;border:1px solid rgba(201,168,76,.3);border-radius:99px;margin-bottom:32px}
+.foot-mark .fm-i{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.foot-mark .fm-t{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.foot-mark .fm-pro{font-family:var(--mono);font-size:9px;font-weight:800;background:var(--gold);color:var(--ink);padding:2px 6px;border-radius:3px;letter-spacing:.1em}
+.foot-q{font-family:var(--serif);font-size:32px;font-weight:400;font-style:italic;color:#fff;letter-spacing:-.01em;line-height:1.4;max-width:800px;margin:0 auto 24px}
+.foot-q em{color:var(--gold-2)}
+.foot-meta{font-size:12px;color:rgba(255,255,255,.4);margin-top:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06);font-family:var(--mono);letter-spacing:.05em}
+.foot-meta a{color:var(--gold);transition:.2s}
+.foot-meta .dot{margin:0 12px;color:rgba(255,255,255,.2)}
+
+@media(max-width:1080px){.chapter{grid-template-columns:1fr}.ch-aside{position:static}.ch-avatar{width:100%;max-width:400px}.s-head{grid-template-columns:1fr;gap:24px}.s-num{font-size:120px}.s-title{font-size:44px}.hero-h1{font-size:56px}.hero-stats{grid-template-columns:repeat(2,1fr)}.sn-cover{grid-template-columns:1fr}.sn-body{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+<a class="nav-brand" href="#top">
+<div class="nav-mark"><i class="fas fa-credit-card"></i></div>
+<div>
+<div class="nav-title">客户智慧经营中枢<span class="nav-pro">PRO</span></div>
+<div class="nav-sub">Customer Smart Engagement Hub · v2.1.0</div>
+</div>
+</a>
+<div class="nav-menu">
+<a class="nav-link active" href="#personas" data-nav><span class="nl-num">01</span>用户画像</a>
+<a class="nav-link" href="#scenarios" data-nav><span class="nl-num">02</span>4W1H 场景</a>
+<a class="nav-link" href="#requirements" data-nav><span class="nl-num">03</span>需求矩阵</a>
+<a class="nav-link" href="#architecture" data-nav><span class="nl-num">04</span>产品架构</a>
+</div>
+<div class="nav-act">
+<a class="nav-btn" href="index-pro.html" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i>原型</a>
+<button class="nav-btn nav-btn-gold"><i class="fas fa-bookmark"></i>收藏</button>
+</div>
+</div>
+</nav>
+
+<section class="hero" id="top">
+<div class="hero-inner">
+<div class="hero-eyebrow"><span class="he-dot"></span>Product Requirements Document · v2.1.0 PRO</div>
+<h1 class="hero-h1">让客户挽回<br><span class="acc">从经验艺术，</span><br>回归数据科学。</h1>
+<p class="hero-sub">9 个智能 Agent 在 11.8 秒内完成“诊断 → 策略 → 合规 → 触达”全流程。系统覆盖 <b>4 类角色 · 16 个工作流页面 · 5 大业务场景</b>，端到端服务信用卡客户全生命周期。</p>
+<div class="hero-meta">
+<span class="hero-chip"><i class="fas fa-microscope"></i>DeepSeek-V3 私有化部署</span>
+<span class="hero-chip"><i class="fas fa-balance-scale"></i>月度公平性自检通过</span>
+<span class="hero-chip"><i class="fas fa-file-shield"></i>监管材料 30 分钟可出</span>
+</div>
+</div>
+</section>
+
+<section class="lineage">
+<div class="lineage-inner">
+<div>
+<div class="lin-label">Document Lineage</div>
+<div class="lin-title">本 PRD 在文档链中的位置</div>
+</div>
+<div class="lin-flow">
+<div class="lin-node"><div class="ln-tag">BRD.md</div><div class="ln-name">商业需求</div><div class="ln-desc">为什么做 / 价值多少 / 监管定位</div></div>
+<div class="lin-arrow"><i class="fas fa-arrow-right"></i></div>
+<div class="lin-node"><div class="ln-tag">MRD.md</div><div class="ln-name">市场需求</div><div class="ln-desc">谁在用 / 16 页面功能 / 跨页流程</div></div>
+<div class="lin-arrow"><i class="fas fa-arrow-right"></i></div>
+<div class="lin-node cur"><div class="ln-tag">PRD.md</div><div class="ln-name">产品规范</div><div class="ln-desc">画像 · 场景 · 需求</div></div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="personas">
+<div class="sec-inner">
+<div class="s-head">
+<div class="s-num">01</div>
+<div>
+<div class="s-eyebrow">USER PERSONAS · 用户画像</div>
+<h2 class="s-title">三类决策者，<em>一类支撑岗</em>。</h2>
+<p class="s-sub">系统按“是否参与业务决策”将用户划分为<b>核心业务方（3 类）</b>与<b>支撑岗位（1 类）</b>。下方逐一拆解每个画像的诉求、痛点、KPI 与所服务的工作流页面。</p>
+</div>
+</div>
+
+<div class="typology">
+<div class="typo act" data-typo="1"><div class="tnum">01 · 战略层</div><div class="ttype">Decision Maker</div><div class="tname">运营管理者</div><div class="ttag"><span>5 页面</span><span>5 步闭环</span></div></div>
+<div class="typo" data-typo="2"><div class="tnum">02 · 执行层</div><div class="ttype">Practitioner</div><div class="tname">客户经理 / 私行家</div><div class="ttag"><span>6 页面</span><span>6 步闭环</span></div></div>
+<div class="typo" data-typo="3"><div class="tnum">03 · 守门人</div><div class="ttype">Gatekeeper</div><div class="tname">合规审计员</div><div class="ttag"><span>4 页面</span><span>一票否决</span></div></div>
+<div class="typo" data-typo="4"><div class="tnum">04 · 支撑</div><div class="ttype">Operator</div><div class="tname">系统管理员</div><div class="ttag"><span>2 页面</span><span>不参与决策</span></div></div>
+</div>
+
+<div class="chapter" id="ch-1">
+<aside class="ch-aside">
+<div class="ch-num">01 / 04</div>
+<div class="ch-avatar p1">
+<div class="ch-icon-big"><i class="fas fa-chart-line"></i></div>
+<div class="ch-pos">Strategic · 战略层</div>
+<div class="ch-fullname">运营管理者</div>
+<div class="ch-role">信用卡中心运营总监 · 经营驾驶舱 · 5 步决策闭环</div>
+</div>
+<div class="ch-quote">行长晨会前 5 分钟我必须知道：哪些客群在流失？流出多少 AUM？这个月挽回投入产出比多少？</div>
+</aside>
+<div class="ch-body">
+<h3 class="ch-headline">每日 9:00 盘点<em>经营指标</em>，<em>用因果归因</em>替代经验汇报。</h3>
+<div class="ch-meta-bar">
+<div class="ch-mb"><div class="cmb-l">画像示例</div><div class="cmb-v">李明 · 42 岁 · 运营总监</div></div>
+<div class="ch-mb"><div class="cmb-l">使用频次</div><div class="cmb-v">每日 + 每周 + 每月</div></div>
+<div class="ch-mb"><div class="cmb-l">设备环境</div><div class="cmb-v">办公双屏 + 通勤手机</div></div>
+<div class="ch-mb"><div class="cmb-l">下管团队</div><div class="cmb-v">200+ CM 团队</div></div>
+</div>
+<div class="ch-split">
+<div>
+<div class="ch-col-h need"><i class="fas fa-bullseye"></i>核心诉求 NEEDS</div>
+<div class="ch-list">
+<div class="ch-li"><div class="ch-li-num">1</div><div><b>看清流失态势</b> · 哪些客群在流失？流出多少 AUM？</div></div>
+<div class="ch-li"><div class="ch-li-num">2</div><div><b>提前预测风险</b> · 30/60/90 天高风险客户分布</div></div>
+<div class="ch-li"><div class="ch-li-num">3</div><div><b>衡量投产比</b> · 月度挽回投入与回收 AUM</div></div>
+<div class="ch-li"><div class="ch-li-num">4</div><div><b>月度策略复盘</b> · CATE 正向 / 伪关联</div></div>
+</div>
+</div>
+<div>
+<div class="ch-col-h pain"><i class="fas fa-fire"></i>核心痛点 PAINS</div>
+<div class="ch-list">
+<div class="ch-li pain"><div class="ch-li-num">1</div><div>流失原因看不清，靠 CM <b>凭经验汇报</b></div></div>
+<div class="ch-li pain"><div class="ch-li-num">2</div><div>挽回 ROI 不明确，<b>难证明价值</b></div></div>
+<div class="ch-li pain"><div class="ch-li-num">3</div><div>对比同业无视角，无法判断行业位置</div></div>
+<div class="ch-li pain"><div class="ch-li-num">4</div><div>决策依赖经验，<b>缺少数据支撑</b></div></div>
+</div>
+</div>
+</div>
+<div class="ch-flow">
+<div class="cf-l"><i class="fas fa-route"></i>5 步决策闭环 · Daily Workflow</div>
+<div class="cf-steps">
+<div class="cf-step"><div class="cs-n">STEP 01</div><div class="cs-t">观察</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 02</div><div class="cs-t">预测</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 03</div><div class="cs-t">响应</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 04</div><div class="cs-t">跟踪</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 05</div><div class="cs-t">复盘</div></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-window-maximize"></i>服务页面 · 5 个</div>
+<div class="cp-grid">
+<div class="cp-page"><i class="fas fa-gauge-high"></i><span>经营驾驶舱</span></div>
+<div class="cp-page"><i class="fas fa-chart-line"></i><span>流失预测</span><span class="pg-tag">NEW</span></div>
+<div class="cp-page"><i class="fas fa-bell"></i><span>实时预警</span></div>
+<div class="cp-page"><i class="fas fa-clipboard-check"></i><span>挽回跟踪</span></div>
+<div class="cp-page"><i class="fas fa-magnifying-glass-chart"></i><span>归因复盘</span><span class="pg-tag">NEW</span></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-trophy"></i>关键 KPI</div>
+<div class="ch-kpi">
+<div class="ch-kpi-c"><div class="ckl">AUM 保全率</div><div class="ckv">≥90<span class="ckvu">%</span></div><div class="ckd">全行</div></div>
+<div class="ch-kpi-c"><div class="ckl">月度投产比</div><div class="ckv">≥3.0<span class="ckvu">x</span></div><div class="ckd">挽回 ROI</div></div>
+<div class="ch-kpi-c"><div class="ckl">模型准确度</div><div class="ckv">≥80<span class="ckvu">%</span></div><div class="ckd">流失预测</div></div>
+<div class="ch-kpi-c"><div class="ckl">复盘提速</div><div class="ckv">80<span class="ckvu">%</span></div><div class="ckd">月度迭代</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="chapter" id="ch-2">
+<aside class="ch-aside">
+<div class="ch-num">02 / 04</div>
+<div class="ch-avatar p2">
+<div class="ch-icon-big"><i class="fas fa-briefcase"></i></div>
+<div class="ch-pos">Practitioner · 执行层</div>
+<div class="ch-fullname">客户经理 / 私行家</div>
+<div class="ch-role">VIP CM · Private Banker · 6 步执行闭环</div>
+</div>
+<div class="ch-quote">人均 300 户管不过来，每个客户都要手工准备 2-3 小时方案。我需要 AI 早晨告诉我：今天该联谁、用什么话术、配什么权益。</div>
+</aside>
+<div class="ch-body">
+<h3 class="ch-headline">每天 8-10 次高频调用，<em>11.8 秒出方案</em>替代 2-3 小时手工准备。</h3>
+<div class="ch-meta-bar">
+<div class="ch-mb"><div class="cmb-l">画像示例</div><div class="cmb-v">陈一鸣 · 34 岁 · BJ-001234</div></div>
+<div class="ch-mb"><div class="cmb-l">在管客户</div><div class="cmb-v">86 户 · AUM ¥4 亿</div></div>
+<div class="ch-mb"><div class="cmb-l">单客时长</div><div class="cmb-v">12 分钟 · 全天高频</div></div>
+<div class="ch-mb"><div class="cmb-l">设备环境</div><div class="cmb-v">PC + 外访 Pad</div></div>
+</div>
+<div class="ch-split">
+<div>
+<div class="ch-col-h need"><i class="fas fa-bullseye"></i>核心诉求 NEEDS</div>
+<div class="ch-list">
+<div class="ch-li"><div class="ch-li-num">1</div><div><b>早晨知道今天该联谁</b> · 按 SLA 倒计时排序，不漏单</div></div>
+<div class="ch-li"><div class="ch-li-num">2</div><div><b>客户全景一图看全</b> · 信用卡+理财+保险+家庭</div></div>
+<div class="ch-li"><div class="ch-li-num">3</div><div><b>AI 给出可执行方案</b> · 话术 + 时机 + 权益</div></div>
+<div class="ch-li"><div class="ch-li-num">4</div><div><b>跨部门协作</b> · 私行 1+N 团队联动</div></div>
+</div>
+</div>
+<div>
+<div class="ch-col-h pain"><i class="fas fa-fire"></i>核心痛点 PAINS</div>
+<div class="ch-list">
+<div class="ch-li pain"><div class="ch-li-num">1</div><div>人均 <b>300 户</b>管不过来，不知道先联谁</div></div>
+<div class="ch-li pain"><div class="ch-li-num">2</div><div>缺方案缺话术，每个客户手工准备 <b>2-3 小时</b></div></div>
+<div class="ch-li pain"><div class="ch-li-num">3</div><div>跨部门沟通慢 · 合规审批 / 双录 / 家族信托</div></div>
+<div class="ch-li pain"><div class="ch-li-num">4</div><div>客户 360 散落各系统，<b>切换成本高</b></div></div>
+</div>
+</div>
+</div>
+<div class="ch-flow">
+<div class="cf-l"><i class="fas fa-route"></i>6 步执行闭环 · Daily Workflow</div>
+<div class="cf-steps">
+<div class="cf-step"><div class="cs-n">STEP 01</div><div class="cs-t">工作台</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 02</div><div class="cs-t">台账</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 03</div><div class="cs-t">画像</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 04</div><div class="cs-t">AI 辅助</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 05</div><div class="cs-t">批量</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n">STEP 06</div><div class="cs-t">执行</div></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-window-maximize"></i>服务页面 · 6 个</div>
+<div class="cp-grid">
+<div class="cp-page"><i class="fas fa-tachometer-alt"></i><span>我的工作台</span><span class="pg-tag">NEW</span></div>
+<div class="cp-page"><i class="fas fa-list"></i><span>客户台账</span></div>
+<div class="cp-page"><i class="fas fa-id-card-clip"></i><span>客户 360</span><span class="pg-tag">NEW</span></div>
+<div class="cp-page"><i class="fas fa-robot"></i><span>AI 智能分析</span></div>
+<div class="cp-page"><i class="fas fa-layer-group"></i><span>批量任务</span></div>
+<div class="cp-page"><i class="fas fa-play-circle"></i><span>挽回执行</span></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-trophy"></i>关键 KPI</div>
+<div class="ch-kpi">
+<div class="ch-kpi-c"><div class="ckl">个人挽回率</div><div class="ckv">≥60<span class="ckvu">%</span></div><div class="ckd">月度</div></div>
+<div class="ch-kpi-c"><div class="ckl">SLA 达标</div><div class="ckv">≥95<span class="ckvu">%</span></div><div class="ckd">P0/P1</div></div>
+<div class="ch-kpi-c"><div class="ckl">个人 NPS</div><div class="ckv">≥+30</div><div class="ckd">客户反馈</div></div>
+<div class="ch-kpi-c"><div class="ckl">效率提升</div><div class="ckv">900<span class="ckvu">x</span></div><div class="ckd">2-3h → 11.8s</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="chapter" id="ch-3">
+<aside class="ch-aside">
+<div class="ch-num">03 / 04</div>
+<div class="ch-avatar p3">
+<div class="ch-icon-big"><i class="fas fa-shield-halved"></i></div>
+<div class="ch-pos">Gatekeeper · 守门人</div>
+<div class="ch-fullname">合规审计员</div>
+<div class="ch-role">合规部 · 4 道守门闸 · 一票否决权</div>
+</div>
+<div class="ch-quote">监管现场检查 30 分钟内必须出材料。AI 决策不能黑盒——每次决策的输入、输出、链路、签名，必须可追溯到秒级。</div>
+</aside>
+<div class="ch-body">
+<h3 class="ch-headline">独立否决权 + 全链路留痕，<em>让 AI 决策</em>经得起监管推敲。</h3>
+<div class="ch-meta-bar">
+<div class="ch-mb"><div class="cmb-l">画像示例</div><div class="cmb-v">张莉 · 38 岁 · 合规审计员</div></div>
+<div class="ch-mb"><div class="cmb-l">使用频次</div><div class="cmb-v">实时 + 每日 + 季度</div></div>
+<div class="ch-mb"><div class="cmb-l">特殊权限</div><div class="cmb-v">解除脱敏 · 全量字段</div></div>
+<div class="ch-mb"><div class="cmb-l">设备环境</div><div class="cmb-v">审计专网 · 隔离环境</div></div>
+</div>
+<div class="ch-split">
+<div>
+<div class="ch-col-h need"><i class="fas fa-bullseye"></i>核心诉求 NEEDS</div>
+<div class="ch-list">
+<div class="ch-li"><div class="ch-li-num">1</div><div><b>4 道闸全覆盖</b> · 适当性 / 营销话术 / 反欺诈 / 隐私</div></div>
+<div class="ch-li"><div class="ch-li-num">2</div><div><b>监管材料即时输出</b> · 30 分钟内可出</div></div>
+<div class="ch-li"><div class="ch-li-num">3</div><div><b>AI 决策可解释</b> · 输入 / 输出 / 链路全展示</div></div>
+<div class="ch-li"><div class="ch-li-num">4</div><div><b>全链路留痕</b> · hash 签名可追溯</div></div>
+</div>
+</div>
+<div>
+<div class="ch-col-h pain"><i class="fas fa-fire"></i>核心痛点 PAINS</div>
+<div class="ch-list">
+<div class="ch-li pain"><div class="ch-li-num">1</div><div>AI 决策<b>黑盒难解释</b>，监管现场说不清</div></div>
+<div class="ch-li pain"><div class="ch-li-num">2</div><div>个人信息影响评估（PIA）<b>流程长</b></div></div>
+<div class="ch-li pain"><div class="ch-li-num">3</div><div>人工审话术<b>工作量大</b>，难以全量覆盖</div></div>
+<div class="ch-li pain"><div class="ch-li-num">4</div><div>监管检查应对慢，<b>临时打捞</b>素材</div></div>
+</div>
+</div>
+</div>
+<div class="ch-flow" style="background:linear-gradient(135deg,#F0FDF4,#FAFBFD)">
+<div class="cf-l" style="color:var(--emerald)"><i class="fas fa-route"></i>4 道守门闸 · Compliance Gates</div>
+<div class="cf-steps">
+<div class="cf-step"><div class="cs-n" style="color:var(--emerald)">GATE 01</div><div class="cs-t">适当性</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n" style="color:var(--emerald)">GATE 02</div><div class="cs-t">话术</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n" style="color:var(--emerald)">GATE 03</div><div class="cs-t">反欺诈</div></div>
+<div class="cf-arr"><i class="fas fa-chevron-right"></i></div>
+<div class="cf-step"><div class="cs-n" style="color:var(--emerald)">GATE 04</div><div class="cs-t">隐私</div></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-window-maximize"></i>服务页面 · 4 个</div>
+<div class="cp-grid">
+<div class="cp-page"><i class="fas fa-user-check"></i><span>适当性管理</span><span class="pg-tag">NEW</span></div>
+<div class="cp-page"><i class="fas fa-comments"></i><span>营销合规</span></div>
+<div class="cp-page"><i class="fas fa-user-shield"></i><span>反欺诈 AML</span></div>
+<div class="cp-page"><i class="fas fa-lock"></i><span>隐私安全</span></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-trophy"></i>关键 KPI</div>
+<div class="ch-kpi">
+<div class="ch-kpi-c"><div class="ckl">检查通过率</div><div class="ckv">100<span class="ckvu">%</span></div><div class="ckd">24 项</div></div>
+<div class="ch-kpi-c"><div class="ckl">违规拦截率</div><div class="ckv">100<span class="ckvu">%</span></div><div class="ckd">前置守门</div></div>
+<div class="ch-kpi-c"><div class="ckl">投诉处理</div><div class="ckv">24<span class="ckvu">h</span></div><div class="ckd">SLA</div></div>
+<div class="ch-kpi-c"><div class="ckl">监管材料</div><div class="ckv">30<span class="ckvu">min</span></div><div class="ckd">即时输出</div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="chapter" id="ch-4">
+<aside class="ch-aside">
+<div class="ch-num">04 / 04</div>
+<div class="ch-avatar" style="background:linear-gradient(160deg,#3D4A5C,#1E2A3D)">
+<div class="ch-icon-big"><i class="fas fa-gear"></i></div>
+<div class="ch-pos">Operator · 支撑岗</div>
+<div class="ch-fullname">系统管理员</div>
+<div class="ch-role">科技部运维 · 数据接入 + 权限维护 · 不参与业务决策</div>
+</div>
+<div class="ch-quote">数据稳定流入、权限准确发放、出问题第一时间响应——业务方不感知系统存在，就是我做对了。</div>
+</aside>
+<div class="ch-body">
+<h3 class="ch-headline">业务方<em>看不见的</em>幕后保障，<em>让系统稳跑</em>。</h3>
+<div class="ch-meta-bar">
+<div class="ch-mb"><div class="cmb-l">画像示例</div><div class="cmb-v">赵工 · 32 岁 · 系统管理员</div></div>
+<div class="ch-mb"><div class="cmb-l">使用频次</div><div class="cmb-v">每日 + 按需响应</div></div>
+<div class="ch-mb"><div class="cmb-l">所属部门</div><div class="cmb-v">科技部 · 运维组</div></div>
+<div class="ch-mb"><div class="cmb-l">设备环境</div><div class="cmb-v">运维专网 · 跳板机</div></div>
+</div>
+<div class="ch-split">
+<div>
+<div class="ch-col-h need"><i class="fas fa-bullseye"></i>核心诉求 NEEDS</div>
+<div class="ch-list">
+<div class="ch-li"><div class="ch-li-num">1</div><div><b>数据稳定接入</b> · CSV / 中台 / 实时流</div></div>
+<div class="ch-li"><div class="ch-li-num">2</div><div><b>权限统一管理</b> · 4 角色 × 16 页面 × 字段级</div></div>
+<div class="ch-li"><div class="ch-li-num">3</div><div><b>异常快速定位</b> · 全链路日志可追溯</div></div>
+</div>
+</div>
+<div>
+<div class="ch-col-h pain"><i class="fas fa-fire"></i>核心痛点 PAINS</div>
+<div class="ch-list">
+<div class="ch-li pain"><div class="ch-li-num">1</div><div>数据格式杂、人工核对<b>易出错</b></div></div>
+<div class="ch-li pain"><div class="ch-li-num">2</div><div>权限变更频繁、<b>缺少留痕</b>难审计</div></div>
+<div class="ch-li pain"><div class="ch-li-num">3</div><div>故障定位靠人工捞日志，<b>响应慢</b></div></div>
+</div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-window-maximize"></i>服务页面 · 2 个</div>
+<div class="cp-grid">
+<div class="cp-page"><i class="fas fa-file-import"></i><span>数据导入</span></div>
+<div class="cp-page"><i class="fas fa-user-shield"></i><span>权限审计</span></div>
+</div>
+</div>
+<div>
+<div class="cp-l"><i class="fas fa-trophy"></i>关键 KPI</div>
+<div class="ch-kpi">
+<div class="ch-kpi-c"><div class="ckl">数据接入成功率</div><div class="ckv">≥99.5<span class="ckvu">%</span></div><div class="ckd">日批</div></div>
+<div class="ch-kpi-c"><div class="ckl">权限变更时效</div><div class="ckv">≤2<span class="ckvu">h</span></div><div class="ckd">SLA</div></div>
+<div class="ch-kpi-c"><div class="ckl">系统可用性</div><div class="ckv">99.95<span class="ckvu">%</span></div><div class="ckd">7×24</div></div>
+<div class="ch-kpi-c"><div class="ckl">审计留痕</div><div class="ckv">100<span class="ckvu">%</span></div><div class="ckd">全链路</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec dark" id="scenarios">
+<div class="sec-inner">
+<div class="s-head">
+<div class="s-num">02</div>
+<div>
+<div class="s-eyebrow">CORE SCENARIOS · 4W1H</div>
+<h2 class="s-title">5 大业务场景，<em>5 分钟读完</em>。</h2>
+<p class="s-sub">每个场景以 <b>Who · What · When · Where · How</b> 拆解，附上端到端步骤与量化价值。这是 PRD 的"用户故事"部分——所有功能都是为了完成这五件事。</p>
+</div>
+</div>
+
+<div class="sn">
+<div class="sn-cover">
+<div class="sn-cover-l">
+<div class="sn-num">01</div>
+<div>
+<div class="sn-title"><em>私行高净值</em>客户<br>紧急挽回</div>
+<div class="sn-desc">客户单日资产流出 ≥¥300 万 → P0 级触发，4 小时内完成首联，启动 1+N 跨部门联动。</div>
+<div class="sn-roi"><i class="fas fa-bolt"></i><b>900x</b><span style="font-weight:500">效率提升 · ROI 1:142</span></div>
+</div>
+</div>
+<div class="sn-cover-r">
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHO</div><div class="sn-w-a">私行家 +<br><b>1+N 团队</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHAT</div><div class="sn-w-a">4h 内首联<br><b>专属保留方案</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHEN</div><div class="sn-w-a">单日流出<br>≥<b>¥300 万</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHERE</div><div class="sn-w-a">工作台 → 360<br>→ AI → 执行</div></div>
+<div class="sn-w"><div class="sn-w-l">H</div><div class="sn-w-q">HOW</div><div class="sn-w-a"><b>9-Agent</b><br>11.8s + HITL</div></div>
+</div>
+</div>
+<div class="sn-body">
+<div>
+<div class="sn-h"><span class="sn-h-l"><i class="fas fa-list-ol"></i>HOW · 7 步执行流程</span></div>
+<div class="sn-step"><div class="sn-step-n">01</div><div class="sn-step-t">工作台 P0 推送<span class="sn-step-meta">1h 倒计时</span></div><div class="sn-step-d">"<b>王*伟资产流出 ¥320 万</b> · 1h 内必须首联"</div></div>
+<div class="sn-step"><div class="sn-step-n">02</div><div class="sn-step-t">调取客户 360 全景<span class="sn-step-meta">综合金融</span></div><div class="sn-step-d">信用卡 + 借记卡 + 理财 + 保险 + 信贷 + <b>家庭关系网</b></div></div>
+<div class="sn-step"><div class="sn-step-n">03</div><div class="sn-step-t">触发 9-Agent 协同分析<span class="sn-step-meta">11.8s</span></div><div class="sn-step-d">主因 <b>友行迁移 68%</b> · ROI 1:142 · 1+N 团队 + 家族信托</div></div>
+<div class="sn-step"><div class="sn-step-n">04</div><div class="sn-step-t">投产比超阈值 → Agent 协商<span class="sn-step-meta">2 轮</span></div><div class="sn-step-d">合规守门 vs 投产比 → 共识 → <b>HITL 工单 #008</b></div></div>
+<div class="sn-step"><div class="sn-step-n">05</div><div class="sn-step-t">合规守门 24 项检查<span class="sn-step-meta">hash 签名</span></div><div class="sn-step-d">基础 10 + 客保 8 + AI 算法 6 · 留痕签名</div></div>
+<div class="sn-step"><div class="sn-step-n">06</div><div class="sn-step-t">客户外访 / 视频面谈</div><div class="sn-step-d">CM 携 Pad 外访 · <b>1+N 团队</b>远程接入</div></div>
+<div class="sn-step"><div class="sn-step-n">07</div><div class="sn-step-t">CRM 联络回填 · 数据回流</div><div class="sn-step-d">ETL → 模型重训 → <b>经营驾驶舱 / 归因复盘</b>更新</div></div>
+</div>
+<div class="sn-side">
+<div class="sn-card dark">
+<div class="sn-card-h"><i class="fas fa-trophy"></i>QUANTIFIED VALUE</div>
+<div class="sn-stat-row"><span>单客处理时间</span><span><b style="text-decoration:line-through;opacity:.5">2-3h</b> → <b style="color:var(--gold)">11.8s</b></span></div>
+<div class="sn-stat-row"><span>挽回 ROI</span><span class="pos">1 : 142</span></div>
+<div class="sn-stat-row"><span>私行 AUM 保全率</span><span class="pos">95%+</span></div>
+<div class="sn-stat-row"><span>跨部门协作时效</span><span class="pos">↓ 70%</span></div>
+</div>
+<div class="sn-card">
+<div class="sn-card-h"><i class="fas fa-users"></i>1+N TEAM 协作</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:12px">
+<div style="padding:10px;background:var(--paper);border-radius:8px;text-align:center"><i class="fas fa-user-tie" style="color:var(--gold-deep)"></i><div style="margin-top:4px;font-weight:600">私行家</div></div>
+<div style="padding:10px;background:var(--paper);border-radius:8px;text-align:center"><i class="fas fa-coins" style="color:var(--gold-deep)"></i><div style="margin-top:4px;font-weight:600">投资顾问</div></div>
+<div style="padding:10px;background:var(--paper);border-radius:8px;text-align:center"><i class="fas fa-scale-balanced" style="color:var(--gold-deep)"></i><div style="margin-top:4px;font-weight:600">税务师</div></div>
+<div style="padding:10px;background:var(--paper);border-radius:8px;text-align:center"><i class="fas fa-gavel" style="color:var(--gold-deep)"></i><div style="margin-top:4px;font-weight:600">律师</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sn">
+<div class="sn-cover">
+<div class="sn-cover-l">
+<div class="sn-num">02</div>
+<div>
+<div class="sn-title"><em>事前流失预测</em><br>与早期介入</div>
+<div class="sn-desc">尚未沉默前 30/60/90 天识别风险，分层介入。早期介入成本约为晚期 1/4。</div>
+<div class="sn-roi"><i class="fas fa-piggy-bank"></i><b>↓ 93%</b><span style="font-weight:500">¥870 → ¥58</span></div>
+</div>
+</div>
+<div class="sn-cover-r">
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHO</div><div class="sn-w-a">运营 + CM<br>+ 数据中心</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHAT</div><div class="sn-w-a">尚未沉默前<br><b>分层介入</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHEN</div><div class="sn-w-a">每日 T+1<br>30/60/90 天</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHERE</div><div class="sn-w-a">预测 → 预警<br>→ 工作台</div></div>
+<div class="sn-w"><div class="sn-w-l">H</div><div class="sn-w-q">HOW</div><div class="sn-w-a"><b>双模型</b><br>+ 12 早期信号</div></div>
+</div>
+</div>
+<div class="sn-body">
+<div>
+<div class="sn-h"><span class="sn-h-l"><i class="fas fa-radar"></i>HOW · 12 项早期流失信号 TOP 6</span></div>
+<div class="sn-card">
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+<thead><tr style="border-bottom:1px solid var(--ink-line)"><th style="text-align:left;padding:12px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase">早期信号</th><th style="text-align:right;padding:12px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase">本周量</th><th style="text-align:right;padding:12px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase">30 日转流失率</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px dashed var(--ink-line)"><td style="padding:12px 8px;color:var(--ink);font-weight:500">来电询问销卡 / 年费减免</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">186</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--rose);font-weight:700">61.8%</td></tr>
+<tr style="border-bottom:1px dashed var(--ink-line)"><td style="padding:12px 8px;color:var(--ink);font-weight:500">客服投诉记录（30 天）</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">142</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--rose);font-weight:700">52.7%</td></tr>
+<tr style="border-bottom:1px dashed var(--ink-line)"><td style="padding:12px 8px;color:var(--ink);font-weight:500">取消自动还款 / 撤销代扣</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">832</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--rose);font-weight:700">48.1%</td></tr>
+<tr style="border-bottom:1px dashed var(--ink-line)"><td style="padding:12px 8px;color:var(--ink);font-weight:500">友行卡同账户大额转入</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">456</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--amber);font-weight:700">44.9%</td></tr>
+<tr style="border-bottom:1px dashed var(--ink-line)"><td style="padding:12px 8px;color:var(--ink);font-weight:500">分期已结清未续作</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">2,847</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--amber);font-weight:700">42.3%</td></tr>
+<tr><td style="padding:12px 8px;color:var(--ink);font-weight:500">家庭账户配偶/子女流失</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono)">512</td><td style="padding:12px 8px;text-align:right;font-family:var(--mono);color:var(--amber);font-weight:700">39.7%</td></tr>
+</tbody></table>
+</div>
+</div>
+<div class="sn-side">
+<div class="sn-card">
+<div class="sn-card-h"><i class="fas fa-filter"></i>30 天预测分层介入</div>
+<div class="sn-tier">
+<div class="sn-tier-row tr-h"><span class="stl">健康（&lt;5%）</span><span class="stn">128,940</span></div>
+<div class="sn-tier-row tr-l"><span class="stl">轻度（5-20%）</span><span class="stn">12,348</span></div>
+<div class="sn-tier-row tr-m"><span class="stl">中度（20-50%）</span><span class="stn">3,219</span></div>
+<div class="sn-tier-row tr-x"><span class="stl">高度（&gt;50%）</span><span class="stn">486</span></div>
+</div>
+</div>
+<div class="sn-card dark">
+<div class="sn-card-h"><i class="fas fa-bullseye"></i>MODEL METRICS</div>
+<div class="sn-stat-row"><span>模型准确度</span><b style="color:var(--gold)">84.7%</b></div>
+<div class="sn-stat-row"><span>覆盖率</span><b>92.3%</b></div>
+<div class="sn-stat-row"><span>件均成本</span><span class="pos">¥870 → ¥58</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sn">
+<div class="sn-cover">
+<div class="sn-cover-l">
+<div class="sn-num">03</div>
+<div>
+<div class="sn-title"><em>因果归因</em>复盘</div>
+<div class="sn-desc">区分"相关性"与"因果性"，量化每个挽回动作的<b style="color:var(--gold-2)">真实增量 CATE</b>。</div>
+<div class="sn-roi"><i class="fas fa-chart-bar"></i><b>+38.2%</b><span style="font-weight:500">CATE 真实增量</span></div>
+</div>
+</div>
+<div class="sn-cover-r">
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHO</div><div class="sn-w-a">运营管理者<br>+ 数据分析师</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHAT</div><div class="sn-w-a">区分相关 vs<br><b>因果增量</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHEN</div><div class="sn-w-a">月度策略<br>季度复盘</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHERE</div><div class="sn-w-a">归因复盘页<br>page-attribution</div></div>
+<div class="sn-w"><div class="sn-w-l">H</div><div class="sn-w-q">HOW</div><div class="sn-w-a"><b>DoWhy/EconML</b><br>CATE 估算</div></div>
+</div>
+</div>
+<div class="sn-body">
+<div>
+<div class="sn-h"><span class="sn-h-l"><i class="fas fa-magnifying-glass-chart"></i>HOW · 归因诊断 5 步法</span></div>
+<div class="sn-step"><div class="sn-step-n">01</div><div class="sn-step-t">DESCRIPTIVE · 描述统计</div><div class="sn-step-d">流失客群基础画像 + 行为特征分布</div></div>
+<div class="sn-step"><div class="sn-step-n">02</div><div class="sn-step-t">CAUSAL · 因果推断<span class="sn-step-meta">DoWhy / EconML</span></div><div class="sn-step-d">双重差分 / 工具变量 / CATE 估算 → 量化<b>真实增量</b></div></div>
+<div class="sn-step"><div class="sn-step-n">03</div><div class="sn-step-t">COMPETITION · 友行迁移</div><div class="sn-step-d">消费 / 支付路径推断流失去向</div></div>
+<div class="sn-step"><div class="sn-step-n">04</div><div class="sn-step-t">ACTIONABLE · 可干预性判定</div><div class="sn-step-d">区分"<b>可干预</b>"vs"不可干预"原因</div></div>
+<div class="sn-step"><div class="sn-step-n">05</div><div class="sn-step-t">RECOMMEND · 策略调优</div><div class="sn-step-d">输出月度策略调优建议</div></div>
+</div>
+<div class="sn-side">
+<div class="sn-card">
+<div class="sn-card-h"><i class="fas fa-tags"></i>6 大流失原因分类</div>
+<div class="sn-causes">
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-tag"></i></div><div class="sn-cause-l">价格</div><div class="sn-cause-d">年费/费率</div></div>
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-arrows-left-right"></i></div><div class="sn-cause-l">替代</div><div class="sn-cause-d">友行迁移</div></div>
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-box"></i></div><div class="sn-cause-l">产品</div><div class="sn-cause-d">权益不匹配</div></div>
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-headset"></i></div><div class="sn-cause-l">服务</div><div class="sn-cause-d">投诉/响应</div></div>
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-shield"></i></div><div class="sn-cause-l">风控</div><div class="sn-cause-d">额度/拒付</div></div>
+<div class="sn-cause"><div class="sn-cause-i"><i class="fas fa-user"></i></div><div class="sn-cause-l">自身</div><div class="sn-cause-d">家庭/职业</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sn">
+<div class="sn-cover">
+<div class="sn-cover-l">
+<div class="sn-num">04</div>
+<div>
+<div class="sn-title"><em>合规守门</em>与<br>监管材料即时输出</div>
+<div class="sn-desc">24 项合规检查前置 + 30 分钟内输出材料。独立合规守门 Agent 拥有<b style="color:var(--gold-2)">一票否决权</b>。</div>
+<div class="sn-roi"><i class="fas fa-shield-halved"></i><b>100%</b><span style="font-weight:500">违规拦截 · 风险敞口 ↓ ¥1,280 万/年</span></div>
+</div>
+</div>
+<div class="sn-cover-r">
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHO</div><div class="sn-w-a">合规审计员<br>+ 守门 Agent</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHAT</div><div class="sn-w-a"><b>24 项</b>检查<br>+ 监管材料</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHEN</div><div class="sn-w-a">实时<br>+ 季度抽查</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHERE</div><div class="sn-w-a">营销 / 适当性<br>/ AML / 隐私</div></div>
+<div class="sn-w"><div class="sn-w-l">H</div><div class="sn-w-q">HOW</div><div class="sn-w-a"><b>横向监督</b><br>留痕 hash</div></div>
+</div>
+</div>
+<div class="sn-body">
+<div>
+<div class="sn-h"><span class="sn-h-l"><i class="fas fa-shield"></i>WHAT · 24 项合规检查 · 三大类</span></div>
+<div class="sn-checks">
+<div class="sn-check">
+<div class="sn-check-n">10</div>
+<div class="sn-check-l">基础合规 · BASIC</div>
+<div class="sn-check-d">字数 · 禁止承诺收益 · 禁止诱导 · 风险提示 · 适当性匹配 · 客户告知 · 营销时段 · 频次 · 数据范围 · 投诉响应</div>
+</div>
+<div class="sn-check bb">
+<div class="sn-check-n">8</div>
+<div class="sn-check-l">客户保护 · CONSUMER</div>
+<div class="sn-check-d">知情权 · 自主选择 · 公平交易 · 信息安全 · 个人信息保护 · 投诉权利 · 适老化 · 弱势群体保护</div>
+</div>
+<div class="sn-check cc">
+<div class="sn-check-n">6</div>
+<div class="sn-check-l">AI 算法 · ALGORITHM</div>
+<div class="sn-check-d">公平性测试 · 可解释 · 人工干预 · 模型监控 PSI/KS · 数据治理</div>
+</div>
+</div>
+</div>
+<div class="sn-side">
+<div class="sn-card dark">
+<div class="sn-card-h"><i class="fas fa-bolt"></i>EXECUTION FLOW</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:12px">
+<div style="padding:10px 12px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid var(--emerald)"><b style="color:#fff">approve</b><span style="margin-left:8px;color:rgba(255,255,255,.6)">通过 → 执行触达</span></div>
+<div style="padding:10px 12px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid var(--rose)"><b style="color:#fff">reject</b><span style="margin-left:8px;color:rgba(255,255,255,.6)">拒绝 + reason</span></div>
+<div style="padding:10px 12px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid var(--gold)"><b style="color:#fff">human_review</b><span style="margin-left:8px;color:rgba(255,255,255,.6)">模糊 → HITL 转人工</span></div>
+</div>
+<div style="margin-top:14px;padding:12px;background:rgba(201,168,76,.1);border-radius:8px;font-family:var(--mono);font-size:11px;color:var(--gold-2)">signature: hash(verdict, payload)</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sn">
+<div class="sn-cover">
+<div class="sn-cover-l">
+<div class="sn-num">05</div>
+<div>
+<div class="sn-title"><em>家庭金融</em>视图<br>与联动挽回</div>
+<div class="sn-desc">单看持卡人不够，从家庭整体资产视角发现<b style="color:var(--gold-2)">联挽机会</b>。</div>
+<div class="sn-roi"><i class="fas fa-people-roof"></i><b>+12 例/月</b><span style="font-weight:500">家庭金融机会 · ↓ 70%</span></div>
+</div>
+</div>
+<div class="sn-cover-r">
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHO</div><div class="sn-w-a">CM + 配偶/子女<br>对应分行 CM</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHAT</div><div class="sn-w-a">家庭整体视角<br><b>发现联动</b></div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHEN</div><div class="sn-w-a">配偶活跃<br>家庭重大事件</div></div>
+<div class="sn-w"><div class="sn-w-l">W</div><div class="sn-w-q">WHERE</div><div class="sn-w-a">客户 360<br><b>家庭关系网</b></div></div>
+<div class="sn-w"><div class="sn-w-l">H</div><div class="sn-w-q">HOW</div><div class="sn-w-a">协作工单<br>+ 双录</div></div>
+</div>
+</div>
+<div class="sn-body">
+<div>
+<div class="sn-h"><span class="sn-h-l"><i class="fas fa-calendar-check"></i>WHEN · 4 月联动机会日历</span></div>
+<div class="sn-cal">
+<div class="sn-cal-c r"><div class="scc-d">4 月 3 日 · BIRTHDAY</div><div class="scc-t">王*伟 50 周岁生日</div><div class="scc-x">送花 + 高端礼品 · 私行 1+N 介入</div></div>
+<div class="sn-cal-c g"><div class="scc-d">4 月 3 日 · ANNIVERSARY</div><div class="scc-t">林*华夫妇结婚纪念日</div><div class="scc-x">夫妇沙龙 · 家庭金融组合方案</div></div>
+<div class="sn-cal-c b"><div class="scc-d">4 月 3 日 · CARD EXPIRY</div><div class="scc-t">张*远卡片到期</div><div class="scc-x">升级"白金 → 黑金" · 续卡挽留</div></div>
+<div class="sn-cal-c p"><div class="scc-d">4 月 3 日 · INSURANCE</div><div class="scc-t">王*伟夫人保险到期</div><div class="scc-x">家庭金融机会 · 联动续保</div></div>
+</div>
+</div>
+<div class="sn-side">
+<div class="sn-card">
+<div class="sn-card-h"><i class="fas fa-list-check"></i>HOW · 5 步联挽流程</div>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--t2);line-height:1.6">
+<div><b style="color:var(--gold-deep);font-family:var(--mono);font-size:10px">STEP 01</b><div style="color:var(--ink);font-weight:500">客户 360 调取家庭账户</div></div>
+<div><b style="color:var(--gold-deep);font-family:var(--mono);font-size:10px">STEP 02</b><div style="color:var(--ink);font-weight:500">识别联动机会</div></div>
+<div><b style="color:var(--gold-deep);font-family:var(--mono);font-size:10px">STEP 03</b><div style="color:var(--ink);font-weight:500">协作工单 #015 联系配偶 CM</div></div>
+<div><b style="color:var(--gold-deep);font-family:var(--mono);font-size:10px">STEP 04</b><div style="color:var(--ink);font-weight:500">联挽方案 · 家族信托 / 家庭金融</div></div>
+<div><b style="color:var(--gold-deep);font-family:var(--mono);font-size:10px">STEP 05</b><div style="color:var(--ink);font-weight:500">双录留痕 + 合规签名</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="sec" id="requirements">
+<div class="sec-inner">
+<div class="s-head">
+<div class="s-num">03</div>
+<div>
+<div class="s-eyebrow">REQUIREMENTS · 需求矩阵</div>
+<h2 class="s-title"><em>68+ 项需求</em>，<br>已 100% 实现并可交互。</h2>
+<p class="s-sub">所有需求均已在 <code style="font-family:var(--mono);font-size:14px;background:var(--paper);padding:3px 8px;border-radius:6px;border:1px solid var(--ink-line)">index-pro.html</code> 中实现。下方按角色聚合，点击切换。优先级：<b>P0 必备</b> / P1 重要 / P2 增强。</p>
+</div>
+</div>
+
+<div class="req-summary">
+<div class="req-sum"><div class="rs-l">★ 总需求量</div><div class="rs-v">68<span class="un">+</span></div><div class="rs-d">4 角色 · <b>16 页面</b> · 全部已实现</div></div>
+<div class="req-sum"><div class="rs-l">P0 必备项</div><div class="rs-v">50</div><div class="rs-d">占比 <b>74%</b> · 上线必交付</div></div>
+<div class="req-sum"><div class="rs-l">原型完成度</div><div class="rs-v">100<span class="un">%</span></div><div class="rs-d">单文件 <b>2,800 行</b> 高保真</div></div>
+<div class="req-sum"><div class="rs-l">跨页交互</div><div class="rs-v">9</div><div class="rs-d">条端到端 <b>X-01 ~ X-09</b></div></div>
+</div>
+
+<div class="req-tabs">
+<div class="req-tab act" data-rt="op"><div class="rt-i"><i class="fas fa-chart-line"></i></div>① 运营管理者<span class="rt-c">5 页 · 25 项</span></div>
+<div class="req-tab" data-rt="cm"><div class="rt-i"><i class="fas fa-briefcase"></i></div>② 客户经理<span class="rt-c">6 页 · 24 项</span></div>
+<div class="req-tab" data-rt="rc"><div class="rt-i"><i class="fas fa-shield-halved"></i></div>③ 合规审计<span class="rt-c">4 页 · 14 项</span></div>
+<div class="req-tab" data-rt="sa"><div class="rt-i"><i class="fas fa-gear"></i></div>④ 系统管理<span class="rt-c">2 页 · 5 项</span></div>
+<div class="req-tab" data-rt="gx"><div class="rt-i"><i class="fas fa-globe"></i></div>全局 + 跨页<span class="rt-c">7 + 9 项</span></div>
+</div>
+
+<div class="req-pane act" data-rp="op">
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon"><i class="fas fa-gauge-high"></i></div><div><div class="rp-name">经营驾驶舱 · page-dashboard</div></div><div class="rp-meta"><span><b>10</b> 项需求</span><span><b>8</b> P0</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">OP-D-01</span><span class="rp-desc">6 项核心 KPI 卡片（流失/AUM/已挽回/回流/Agent/NPS）· 含同比环比变化</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-02</span><span class="rp-desc">5×3 风险矩阵（5 分层 × 3 风险等级）· 点击单元格 → 客户台账筛选</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-04</span><span class="rp-desc">合规态势卡片 · 6 项检查实时状态（通过/警告/异常）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-05</span><span class="rp-desc">5 阶段客户流失漏斗（健康→早期→显著→深度→流失）· 含转化率</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-07</span><span class="rp-desc">实时挽回态势（24h）+ <b>9 Agent 实时负载</b>动态更新</span><span class="rp-pri pri-p1">P1</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-08</span><span class="rp-desc">智能推送区（私行流出/合规否决/AML/投诉/模型告警/家庭机会）· 按 SLA 排序</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-D-10</span><span class="rp-desc">导出报表（CSV）</span><span class="rp-pri pri-p2">P2</span></div>
+</div>
+</div>
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--purple),#5440A0)"><i class="fas fa-chart-line"></i></div><div><div class="rp-name">流失预测 · page-predict<span class="rp-tag-new">NEW</span></div></div><div class="rp-meta"><span><b>8</b> 项需求</span><span><b>6</b> P0</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">OP-P-01</span><span class="rp-desc"><b>双模型预警机制</b>（早期 + 晚期）说明 banner</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-P-02</span><span class="rp-desc">30 天流失预测漏斗 · 健康/轻度/中度/高度 4 档</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-P-04</span><span class="rp-desc">预测能力概览（准确度 <b>84.7%</b> 等 4 项）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-P-05</span><span class="rp-desc">公平性自检 · 性别/年龄/地域 DP（≤0.05）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-P-06</span><span class="rp-desc"><b>12 项早期流失信号</b>表 · 含 30 日转流失率</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--rose),#9F1239)"><i class="fas fa-bell"></i></div><div><div class="rp-name">实时预警 / 挽回跟踪 / 归因复盘</div></div><div class="rp-meta"><span><b>7</b> 项需求</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">OP-A-01</span><span class="rp-desc">SLA 4 级统计 + Tab 筛选（P0/P1/P2/全部）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-F-01</span><span class="rp-desc">5 项挽回 KPI + Tab 筛选（成功/跟进中/失败）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-AT-01</span><span class="rp-desc"><b>因果推断（CATE）月度报告</b> · DoWhy/EconML</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-AT-02</span><span class="rp-desc">6 大流失原因分类视图</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">OP-AT-03</span><span class="rp-desc">友行迁移路径监测</span><span class="rp-pri pri-p1">P1</span></div>
+</div>
+</div>
+</div>
+
+<div class="req-pane" data-rp="cm">
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--gold-deep),var(--gold))"><i class="fas fa-tachometer-alt"></i></div><div><div class="rp-name">我的工作台 · page-workbench<span class="rp-tag-new">NEW</span></div></div><div class="rp-meta"><span><b>6</b> 项 · 全 P0</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">CM-W-01</span><span class="rp-desc">个人 6 项 KPI（待办 P0/本周/挽回率/AUM 保全/SLA/个人 NPS）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-W-02</span><span class="rp-desc">今日任务列表 · <b>按 SLA 倒计时排序</b></span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-W-03</span><span class="rp-desc">客户重要日历（生日/纪念日/卡片到期/家属保险）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-W-04</span><span class="rp-desc"><b>AI 助手对话框</b> · 自然语言 → 调用 9-Agent</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-W-06</span><span class="rp-desc">协作工单（HITL/双录/家族信托/家庭联挽/投诉）</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--sky),#0369A1)"><i class="fas fa-id-card-clip"></i></div><div><div class="rp-name">客户 360 · page-customer360<span class="rp-tag-new">NEW</span></div></div><div class="rp-meta"><span><b>7</b> 项需求</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">CM-C-01</span><span class="rp-desc">数据可见性 banner · <b>按角色脱敏</b></span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-C-03</span><span class="rp-desc">综合金融视图（信用卡+借记+理财+基金+保险+信贷）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-C-04</span><span class="rp-desc">资产财务（AUM 历史/配置/现金流/负债）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-C-06</span><span class="rp-desc"><b>家庭关系网</b>（配偶/子女/父母联动）</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--purple),#3D2D8A)"><i class="fas fa-robot"></i></div><div><div class="rp-name">AI 智能分析 / 批量任务 / 挽回执行</div></div><div class="rp-meta"><span><b>11</b> 项需求</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">CM-A-02</span><span class="rp-desc"><b>9-Agent 流水线 DAG 可视化</b>（4 阶段 + 协商 + 反馈）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-A-03</span><span class="rp-desc">9 个 Agent 各自输出展示</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-A-04</span><span class="rp-desc">协商触发场景标识（超阈值 / 互斥结论）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-A-05</span><span class="rp-desc">HITL 工单自动生成入口</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-FD-01</span><span class="rp-desc">SOP 5 步流程展示</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">CM-FD-03</span><span class="rp-desc">联络记录表单提交 · 数据回流管道</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+</div>
+
+<div class="req-pane" data-rp="rc">
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--emerald),#0E5C2E)"><i class="fas fa-shield-halved"></i></div><div><div class="rp-name">合规审计 · 4 页面整合（适当性/营销/AML/隐私）</div></div><div class="rp-meta"><span><b>14</b> 项 · 全 P0</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">RC-S-01</span><span class="rp-desc">产品风险等级 <b>R1-R5</b> 与客户风险承受能力匹配</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-S-02</span><span class="rp-desc">双录触发条件（大额/高风险/私行）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-M-01</span><span class="rp-desc"><b>24 项合规检查清单</b>（基础 10 + 客保 8 + AI 6）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-M-03</span><span class="rp-desc">违禁词检测（诱导性 / 保证收益 / 仅限今日 等）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-M-04</span><span class="rp-desc"><b>留痕签名</b> · hash(verdict, payload)</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-AM-02</span><span class="rp-desc">异常交易监测（规则 + ML 双模型）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-PR-01</span><span class="rp-desc">PIA 评估流程 · 12/12 通过状态</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">RC-PR-02</span><span class="rp-desc"><b>字段级脱敏策略</b>（按角色）</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+</div>
+
+<div class="req-pane" data-rp="sa">
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon"><i class="fas fa-gear"></i></div><div><div class="rp-name">系统管理 · 数据导入 / 权限审计</div></div><div class="rp-meta"><span><b>5</b> 项需求</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">SA-I-01</span><span class="rp-desc">CSV 数据导入模板 + 拖拽上传 + 字段校验</span><span class="rp-pri pri-p1">P1</span></div>
+<div class="rp-row"><span class="rp-id">SA-A-01</span><span class="rp-desc"><b>角色权限矩阵</b>（4 角色 × 16 页面 × 字段级）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">SA-A-02</span><span class="rp-desc">操作审计日志 · 全链路</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">SA-A-03</span><span class="rp-desc">算法决策<b>可解释</b> · 任意决策可追溯</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">SA-A-04</span><span class="rp-desc">监管对接接口 · 一键导出报告</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+</div>
+
+<div class="req-pane" data-rp="gx">
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,#0E7490,#155E75)"><i class="fas fa-globe"></i></div><div><div class="rp-name">全局功能需求</div></div><div class="rp-meta"><span><b>7</b> 项需求</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">G-01</span><span class="rp-desc">4 角色侧边栏分组导航（按角色聚合页面）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">G-02</span><span class="rp-desc">全局搜索（CIF / 客户姓名 / 证件号 / 卡号 / 工单号）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">G-06</span><span class="rp-desc">用户身份与角色切换</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">G-07</span><span class="rp-desc">30 秒自动刷新关键数据</span><span class="rp-pri pri-p1">P1</span></div>
+</div>
+</div>
+<div class="req-page">
+<div class="rp-head"><div class="rp-icon" style="background:linear-gradient(135deg,var(--gold-deep),var(--gold))"><i class="fas fa-arrows-turn-to-dots"></i></div><div><div class="rp-name">跨页交互 · End-to-End Flows</div></div><div class="rp-meta"><span><b>9</b> 条流程</span></div></div>
+<div>
+<div class="rp-row"><span class="rp-id">X-01</span><span class="rp-desc">驾驶舱 5×3 矩阵 → <b>客户台账</b>（按分层+风险筛选）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">X-04</span><span class="rp-desc">实时预警 → <b>AI 分析</b> → 挽回执行</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">X-05</span><span class="rp-desc">工作台 AI 助手 → AI 分析（"查看详情"）</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">X-06</span><span class="rp-desc">工作台协作工单 → 适当性 / AML / 双录</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">X-08</span><span class="rp-desc">挽回执行<b>数据回流</b> → 经营驾驶舱 / 归因复盘</span><span class="rp-pri pri-p0">P0</span></div>
+<div class="rp-row"><span class="rp-id">X-09</span><span class="rp-desc">HITL 触发 → 权限审计（留痕）+ 协作工单</span><span class="rp-pri pri-p0">P0</span></div>
+</div>
+</div>
+</div>
+
+<div class="req-foot">
+<div>
+<div class="rf-l">所有需求<em>已在原型完成实现</em>。</div>
+<div class="rf-d">每条需求都对应 <code style="font-family:var(--mono);background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px">index-pro.html</code> 的可交互界面与数据点</div>
+</div>
+<div class="rf-stats">
+<div class="rfs"><div class="rfs-v">2,800</div><div class="rfs-l">原型代码行</div></div>
+<div class="rfs"><div class="rfs-v">18</div><div class="rfs-l">页面</div></div>
+<div class="rfs"><div class="rfs-v">100%</div><div class="rfs-l">实现度</div></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="sec dark" id="architecture">
+<div class="sec-inner">
+<div class="s-head">
+<div class="s-num">04</div>
+<div>
+<div class="s-eyebrow">PRODUCT ARCHITECTURE · 产品架构</div>
+<h2 class="s-title">5 层业务架构 ·<br><em>9-Agent</em> 协同 DAG</h2>
+<p class="s-sub">从展现层到中台层的完整技术栈，全部基于 <b>LangGraph + DeepSeek-V3 私有化部署</b>。9 个智能 Agent 在 11.8 秒内完成 4 阶段并行 + 协商 + 反馈的完整决策。</p>
+</div>
+</div>
+
+<div class="archx">
+<div class="archx-frame">
+<div class="archx-main">
+
+<div class="axl l1">
+<div class="axl-rail">
+<div class="axl-tag">L1 · 展现层</div>
+<div class="axl-name">Presentation</div>
+<div class="axl-en">Business User Interface</div>
+<div class="axl-resp">4 类业务角色的工作流入口 · 同一系统差异化视图</div>
+</div>
+<div class="axl-grid axl-g4">
+<div class="axm gold-spec"><div class="axm-h"><i class="fas fa-chart-line"></i>运营管理者<span class="axm-num">5 页</span></div><div class="axm-d">驾驶舱 · 流失预测 · 实时预警 · 挽回跟踪 · 归因复盘</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-briefcase"></i>客户经理<span class="axm-num">6 页</span></div><div class="axm-d">工作台 · 客户台账 · 客户 360 · AI 分析 · 批量任务 · 执行</div></div>
+<div class="axm" style="background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.02));border-color:rgba(22,163,74,.25)"><div class="axm-h"><i class="fas fa-shield-halved" style="color:#86EFAC"></i>合规审计<span class="axm-num">4 页</span></div><div class="axm-d">适当性管理 · 营销合规 · AML 反欺诈 · 隐私安全</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-gear"></i>系统管理<span class="axm-num">2 页</span></div><div class="axm-d">数据导入 · 权限审计</div></div>
+</div>
+</div>
+
+<div class="axl-conn">
+<div class="axc-rail">↓ DOWN-CALL</div>
+<div class="axc-flow"><i class="fas fa-arrow-down"></i><b>HTTPS / RESTful API</b><span style="opacity:.5">·</span>OAuth 2.0 + JWT<span style="opacity:.5">·</span>RBAC 字段级脱敏<span style="opacity:.5">·</span>30s 实时刷新</div>
+</div>
+
+<div class="axl l2">
+<div class="axl-rail">
+<div class="axl-tag">L2 · 应用层</div>
+<div class="axl-name">Business Domain</div>
+<div class="axl-en">Core Business Services</div>
+<div class="axl-resp">8 个核心业务域 · DDD 边界划分 · 微服务化部署</div>
+</div>
+<div class="axl-grid axl-g4">
+<div class="axm"><div class="axm-h"><i class="fas fa-id-card"></i>客户域</div><div class="axm-d">画像 / 360 / 家庭金融 / 综合金融视图</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-chess"></i>策略域</div><div class="axm-d">分层策略 / 客群规则 / 权益匹配</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-paper-plane"></i>触达域</div><div class="axm-d">话术 / 渠道编排 / 时机优化</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-eye"></i>监控域</div><div class="axm-d">实时预警 / SLA 倒计时 / 异常检测</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-magnifying-glass-chart"></i>分析域</div><div class="axm-d">流失预测 / 因果归因 / CATE 估算</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-shield"></i>合规域</div><div class="axm-d">适当性 / 24 项检查 / AML / 隐私</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-people-arrows"></i>协作域</div><div class="axm-d">HITL 工单 / 1+N 团队 / 双录</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-tachometer-alt"></i>工作台域</div><div class="axm-d">个人 KPI / 任务调度 / 日历</div></div>
+</div>
+</div>
+
+<div class="axl-conn">
+<div class="axc-rail">↓ ORCHESTRATE</div>
+<div class="axc-flow"><i class="fas fa-arrow-down"></i><b>LangGraph StateGraph</b><span style="opacity:.5">·</span>Pydantic V2 Schema<span style="opacity:.5">·</span>异步并行调用<span style="opacity:.5">·</span>HITL 中断点</div>
+</div>
+
+<div class="axl l3">
+<div class="axl-rail">
+<div class="axl-tag">L3 · 智能层</div>
+<div class="axl-name">Multi-Agent</div>
+<div class="axl-en">9-Agent Collaboration</div>
+<div class="axl-resp">11.8s 完成 4 阶段 DAG · 并行 + 协商 + 反馈回路</div>
+</div>
+<div class="axl-grid axl-g6">
+<div class="axm purple"><div class="axm-h"><i class="fas fa-user-magnifying-glass"></i>① 风险洞察</div><div class="axm-d">RiskAssessment · 综合金融</div><div class="axm-tech"><span>3.2s</span><span>temp 0.1</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-magnifying-glass-chart"></i>② 流失诊断</div><div class="axm-d">AttributionResult · 6 类主因</div><div class="axm-tech"><span>2.4s</span><span>temp 0.2</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-gift"></i>③ 产品洞察</div><div class="axm-d">权益匹配 · 不做策略</div><div class="axm-tech"><span>1.8s</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-coins"></i>④ 风险定价</div><div class="axm-d">ROI 测算 · 投产比</div><div class="axm-tech"><span>1.6s</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-chess"></i>⑤ 经营策略</div><div class="axm-d">SLA + 渠道</div><div class="axm-tech"><span>1.5s</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-clock"></i>⑥ 触达编排</div><div class="axm-d">最佳时机 / 频次</div><div class="axm-tech"><span>1.4s</span></div></div>
+<div class="axm purple"><div class="axm-h"><i class="fas fa-message"></i>⑦ 话术生成</div><div class="axm-d">5 要素合规话术</div><div class="axm-tech"><span>2.1s</span><span>temp 0.5</span></div></div>
+<div class="axm emerald"><div class="axm-h"><i class="fas fa-shield-halved"></i>⑧ 合规守门</div><div class="axm-d">24 项检查 + hash 签名</div><div class="axm-tech"><span>temp 0.0</span></div></div>
+<div class="axm rose-spec"><div class="axm-h"><i class="fas fa-rotate"></i>⑨ 客户体验</div><div class="axm-d">NPSPrediction · 反馈回路</div><div class="axm-tech"><span>0.8s</span></div></div>
+<div class="axm gold-spec"><div class="axm-h"><i class="fas fa-comments"></i>协商 Agent</div><div class="axm-d">超阈值 / 互斥结论</div><div class="axm-tech"><span>≤5 轮</span></div></div>
+<div class="axm rose-spec"><div class="axm-h"><i class="fas fa-user-shield"></i>HITL 网关</div><div class="axm-d">人工干预 · 双签确认</div><div class="axm-tech"><span>break</span></div></div>
+<div class="axm purple" style="opacity:.6"><div class="axm-h"><i class="fas fa-plus" style="color:rgba(255,255,255,.4)"></i>预留</div><div class="axm-d">v3.0 双录质检 Agent</div></div>
+</div>
+</div>
+
+<div class="axl-conn">
+<div class="axc-rail">↓ INFER &amp; STORE</div>
+<div class="axc-flow"><i class="fas fa-arrow-down"></i><b>Model Inference</b><span style="opacity:.5">·</span>Vector Retrieval<span style="opacity:.5">·</span>Causal Estimation<span style="opacity:.5">·</span>Experiment Tracking</div>
+</div>
+
+<div class="axl l4">
+<div class="axl-rail">
+<div class="axl-tag">L4 · 平台层</div>
+<div class="axl-name">Platform</div>
+<div class="axl-en">AI Orchestration &amp; Infrastructure</div>
+<div class="axl-resp">编排框架 / 模型推理 / 检索 / 因果推断 / 监控</div>
+</div>
+<div class="axl-grid axl-g3">
+<div class="axm gold-spec"><div class="axm-h"><i class="fas fa-diagram-project"></i>Agent 编排</div><div class="axm-d">状态机驱动 · 图并行 · HITL 中断 · 时间旅行</div><div class="axm-tech"><span>LangGraph 0.2.16</span><span>LangChain</span></div></div>
+<div class="axm gold-spec"><div class="axm-h"><i class="fas fa-microchip"></i>LLM 基座</div><div class="axm-d">私有化部署 · 128K 长上下文 · MoE 架构</div><div class="axm-tech"><span>DeepSeek-V3</span><span>vLLM</span></div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-shield-virus"></i>Schema 校验</div><div class="axm-d">Agent 间输入输出强类型 · IO Schema</div><div class="axm-tech"><span>Pydantic V2</span></div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-magnifying-glass"></i>RAG 检索</div><div class="axm-d">产品 / 策略 / 话术 / 合规 / 案例 5 库</div><div class="axm-tech"><span>FAISS</span><span>BGE-M3</span></div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-square-root-variable"></i>因果推断</div><div class="axm-d">DID / IV / CATE 估算</div><div class="axm-tech"><span>DoWhy</span><span>EconML</span></div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-wave-square"></i>模型监控</div><div class="axm-d">PSI / KS 漂移 · 月度公平性</div><div class="axm-tech"><span>MLflow</span><span>Prometheus</span></div></div>
+</div>
+</div>
+
+<div class="axl-conn">
+<div class="axc-rail">↓ DATA SOURCE</div>
+<div class="axc-flow"><i class="fas fa-arrow-down"></i><b>ETL Pipeline</b><span style="opacity:.5">·</span>Kafka Stream<span style="opacity:.5">·</span>API Gateway<span style="opacity:.5">·</span>批流一体</div>
+</div>
+
+<div class="axl l5">
+<div class="axl-rail">
+<div class="axl-tag">L5 · 中台层</div>
+<div class="axl-name">Foundation</div>
+<div class="axl-en">Bank Mid-Office Integration</div>
+<div class="axl-resp">行内既有中台对接 · 数据 / 风控 / 触达 / 治理</div>
+</div>
+<div class="axl-grid axl-g6">
+<div class="axm"><div class="axm-h"><i class="fas fa-database"></i>数据中台</div><div class="axm-d">客户主数据 / 交易明细 / 标签</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-shield"></i>风控中台</div><div class="axm-d">额度 / 反欺诈 / 黑灰名单</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-paper-plane"></i>触达中台</div><div class="axm-d">短信 / App Push / 外呼 / 微信</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-headset"></i>服务中台</div><div class="axm-d">客服工单 / IVR / 智能问答</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-balance-scale"></i>治理中台</div><div class="axm-d">数据治理 / 元数据 / 血缘</div></div>
+<div class="axm"><div class="axm-h"><i class="fas fa-server"></i>AI 基础设施</div><div class="axm-d">GPU 集群 / 向量库 / 模型仓</div></div>
+</div>
+</div>
+
+</div>
+
+<aside class="archx-cross">
+<div class="axc-h">
+<div class="axc-h-l">⊥ CROSS-CUTTING</div>
+<div class="axc-h-t">横切关注点</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-key"></i>身份与授权</div>
+<div class="axc-i-d">SSO 单点登录 · RBAC 5 级 · 字段级脱敏</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-fingerprint"></i>审计与留痕</div>
+<div class="axc-i-d">全链路日志 · hash 签名 · 7 年归档</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-eye"></i>可观测性</div>
+<div class="axc-i-d">Trace · Metrics · Log · Token 计费</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-gavel"></i>监管合规</div>
+<div class="axc-i-d">PIA 评估 · 适当性管理 · 双录留痕</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-arrows-rotate"></i>反馈回路</div>
+<div class="axc-i-d">CRM 回填 → ETL → 模型重训</div>
+</div>
+<div class="axc-i">
+<div class="axc-i-h"><i class="fas fa-flask"></i>实验与灰度</div>
+<div class="axc-i-d">A/B Test · 影子模型 · 蓝绿发布</div>
+</div>
+</aside>
+</div>
+
+<div class="archx-legend">
+<div class="legend-items">
+<div class="li"><span class="li-sw" style="background:rgba(201,168,76,.4)"></span>核心业务层</div>
+<div class="li"><span class="li-sw" style="background:rgba(109,91,186,.4)"></span>智能编排层</div>
+<div class="li"><span class="li-sw" style="background:rgba(14,116,144,.4)"></span>基础设施层</div>
+<div class="li"><span class="li-sw" style="background:rgba(22,163,74,.4)"></span>合规守门 / VETO</div>
+<div class="li"><span class="li-sw" style="background:rgba(225,29,72,.4)"></span>HITL / 反馈回路</div>
+</div>
+<div>v2.1.0 PRO · 2026-04-03</div>
+</div>
+</div>
+
+<div class="dag-wrap">
+<div class="dag-h">
+<div>
+<div class="dh-l">★ 9-AGENT COLLABORATIVE DAG · LangGraph</div>
+<div class="dh-t">11.8 秒决策全流程</div>
+</div>
+<div class="dh-stats">
+<div><div class="dhs-v">11.8s</div><div class="dhs-l">总耗时</div></div>
+<div><div class="dhs-v">~28K</div><div class="dhs-l">Token</div></div>
+<div><div class="dhs-v">↓60%</div><div class="dhs-l">vs 串行</div></div>
+</div>
+</div>
+
+<div class="dag-input"><i class="fas fa-arrow-down"></i>INPUT · 预警事件 + 客户特征(14字段) + 家庭金融 + 行内策略</div>
+<div class="dag-arr"><i class="fas fa-chevron-down"></i></div>
+
+<div class="dag-stage" data-stage="STAGE 01 · 并行洞察">
+<div class="dag-st-h"><div class="dag-st-t">感知<em> · 并行洞察层</em></div><div class="dag-st-d">取最长 3.2s</div></div>
+<div class="dag-row dag-r2">
+<div class="agent gold"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-user-magnifying-glass"></i>① 客户风险洞察</div><div class="ag-t">3.2s · temp 0.1</div></div><div class="ag-d"><b>RiskAssessment</b> · 综合金融视图 / 风险评级 A/B/C</div></div>
+<div class="agent gold"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-magnifying-glass-chart"></i>② 流失原因诊断</div><div class="ag-t">2.4s · temp 0.2</div></div><div class="ag-d"><b>AttributionResult</b> · 6 类主因 · CATE 真实增量</div></div>
+</div>
+</div>
+<div class="dag-arr"><i class="fas fa-chevron-down"></i></div>
+
+<div class="dag-stage" data-stage="STAGE 02 · 方案制定">
+<div class="dag-st-h"><div class="dag-st-t">决策<em> · 并行方案制定</em></div><div class="dag-st-d">取最长 1.8s</div></div>
+<div class="dag-row dag-r3">
+<div class="agent"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-gift"></i>③ 产品洞察</div><div class="ag-t">1.8s</div></div><div class="ag-d"><b>权益匹配</b> · 不做策略</div></div>
+<div class="agent"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-coins"></i>④ 风险定价</div><div class="ag-t">1.6s</div></div><div class="ag-d"><b>ROI 测算</b> · 投产比</div></div>
+<div class="agent"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-chess"></i>⑤ 经营策略</div><div class="ag-t">1.5s</div></div><div class="ag-d"><b>SLA + 渠道</b> · 不生成话术</div></div>
+</div>
+</div>
+
+<div class="dag-special"><i class="fas fa-comments"></i><div><b>协商 Agent</b> · 触发条件：超阈值 / 互斥结论 / 高净值。本案投产比 AUM 1,420x 成本 → 申请例外审批，<b>2 轮协商达成共识</b> → 自动生成 HITL 工单 #2026-0403-008</div><div class="dse-meta">最多 5 轮</div></div>
+
+<div class="dag-stage" data-stage="STAGE 03 · 触达执行">
+<div class="dag-st-h"><div class="dag-st-t">触达<em> · 串行执行</em></div><div class="dag-st-d">3.5s · serial</div></div>
+<div class="dag-row dag-r2">
+<div class="agent cyan"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-clock"></i>⑥ 触达编排</div><div class="ag-t">1.4s</div></div><div class="ag-d">最佳时机 / 频次 · 不生成话术</div></div>
+<div class="agent cyan"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-message"></i>⑦ 营销执行</div><div class="ag-t">2.1s · temp 0.5</div></div><div class="ag-d"><b>话术生成</b> · 5 要素合规 · 千人千面</div></div>
+</div>
+</div>
+<div class="dag-arr"><i class="fas fa-chevron-down"></i></div>
+
+<div class="dag-stage" data-stage="STAGE 04 · 守门 + 反馈">
+<div class="dag-st-h"><div class="dag-st-t">守门<em> · 独立否决 + 反馈回路</em></div><div class="dag-st-d">1.2s · final</div></div>
+<div class="dag-row dag-r2">
+<div class="agent special"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-shield-halved" style="color:var(--emerald)"></i>⑧ 合规守门 <span style="font-family:var(--mono);font-size:9px;color:var(--emerald);background:rgba(22,163,74,.18);padding:2px 6px;border-radius:4px;margin-left:4px;letter-spacing:.05em">VETO</span></div><div class="ag-t">temp 0.0</div></div><div class="ag-d"><b>独立·横向监督·一票否决</b> · 24 项检查 + hash 留痕签名</div></div>
+<div class="agent rose"><div class="ag-h"><div class="ag-n"><i class="ag-i fas fa-rotate" style="color:var(--rose)"></i>⑨ 客户体验</div><div class="ag-t">0.8s · 反馈→⑤⑦</div></div><div class="ag-d"><b>NPSPrediction</b> · 反馈回路 → 自我优化</div></div>
+</div>
+</div>
+<div class="dag-arr"><i class="fas fa-chevron-down"></i></div>
+
+<div class="dag-output"><i class="fas fa-flag-checkered"></i>OUTPUT · 方案包 + 话术 + 行动计划 + 合规签名 + HITL 工单</div>
+
+<div class="dag-foot">
+<div><div class="df-v">11.8s</div><div class="df-l">总执行</div></div>
+<div><div class="df-v">9 次</div><div class="df-l">LLM 调用</div></div>
+<div><div class="df-v">24 项</div><div class="df-l">合规检查</div></div>
+<div><div class="df-v">~28K</div><div class="df-l">Token 消耗</div></div>
+</div>
+</div>
+
+<div style="margin-top:80px">
+<div class="s-eyebrow"><i class="fas fa-code"></i> TECH STACK · 技术栈选型</div>
+<div class="tech-grid">
+<div class="tech-row"><div class="tr-tl">LLM 基座</div><div class="tr-tv"><code>DeepSeek-V3</code> 私有化部署 · 128K 长上下文 · MoE 架构 · 推理成本 ↓ 40%</div></div>
+<div class="tech-row"><div class="tr-tl">Agent 编排</div><div class="tr-tv"><code>LangGraph 0.2.16</code> + LangChain · 状态机驱动 · 图并行 · HITL</div></div>
+<div class="tech-row"><div class="tr-tl">Schema</div><div class="tr-tv"><code>Pydantic V2</code> · 类型安全 · Agent 间输入输出强校验</div></div>
+<div class="tech-row"><div class="tr-tl">RAG 检索</div><div class="tr-tv"><code>FAISS</code> + <code>BGE-M3</code> · 产品库 / 策略库 / 话术库 / 合规库 / 案例库</div></div>
+<div class="tech-row"><div class="tr-tl">因果推断</div><div class="tr-tv"><code>DoWhy</code> + <code>EconML</code> · 双重差分 / 工具变量 / CATE 估算</div></div>
+<div class="tech-row"><div class="tr-tl">模型监控</div><div class="tr-tv"><code>MLflow</code> + Prometheus + Grafana · PSI/KS 漂移 · 月度公平性测试</div></div>
+<div class="tech-row"><div class="tr-tl">前端</div><div class="tr-tv">HTML5 + CSS3 + Vanilla JS · 单文件 SPA · <b>2,800 行 · 16 页面</b></div></div>
+</div>
+</div>
+
+<div style="margin-top:80px">
+<div class="s-eyebrow"><i class="fas fa-route"></i> ROADMAP · 演进路线</div>
+<div class="road">
+<div class="rd-c past"><div class="rd-tag">v1.0 · 2026 Q1</div><div class="rd-v">起点</div><div class="rd-d">4-Agent · 9 页面 · 钻石+白金试点</div></div>
+<div class="rd-c cur"><div class="rd-now">NOW</div><div class="rd-tag">v2.1 PRO · 2026 Q2</div><div class="rd-v">当前</div><div class="rd-d">9-Agent + 协商 + HITL · 5 分层 · <b>16 页面</b> · 4 大合规模块</div></div>
+<div class="rd-c"><div class="rd-tag">v2.5 · 2026 Q3</div><div class="rd-v">扩展</div><div class="rd-d">MA 触达编排 · A/B 实验 · 模型监控 · 双录质检 Agent</div></div>
+<div class="rd-c"><div class="rd-tag">v3.0 · 2027 Q1</div><div class="rd-v">闭环</div><div class="rd-d">全生命周期 · NPS 13 触发点 · Agent Memory · 跨业务线复用</div></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer class="foot">
+<div class="sec-inner">
+<div class="foot-mark">
+<div class="fm-i"><i class="fas fa-credit-card"></i></div>
+<div class="fm-t">客户智慧经营中枢 <span class="fm-pro">PRO</span></div>
+</div>
+<div class="foot-q">"让客户挽回从经验艺术，<em>回归数据科学</em>。"</div>
+<div class="foot-meta">
+PRD v2.1.0 PRO · 2026-04-03 <span class="dot">·</span>
+<a href="BRD.md">BRD.md</a> <span class="dot">→</span>
+<a href="MRD.md">MRD.md</a> <span class="dot">→</span>
+<a href="PRD.md">PRD.md</a> <span class="dot">→</span>
+<a href="index-pro.html">index-pro.html</a>
+<div style="margin-top:14px">© 2026 安兴宇联</div>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+const navs=document.querySelectorAll('[data-nav]');
+const secs=Array.from(navs).map(n=>document.querySelector(n.getAttribute('href'))).filter(Boolean);
+function onScroll(){
+let cur=0;
+secs.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<200)cur=i});
+navs.forEach(n=>n.classList.remove('active'));
+if(navs[cur])navs[cur].classList.add('active');
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+document.querySelectorAll('[data-typo]').forEach(t=>{
+t.addEventListener('click',()=>{
+document.querySelectorAll('[data-typo]').forEach(x=>x.classList.remove('act'));
+t.classList.add('act');
+const k=t.getAttribute('data-typo');
+const tgt=document.getElementById('ch-'+k);
+if(!tgt)return;
+const y=tgt.getBoundingClientRect().top+window.pageYOffset-72;
+window.scrollTo({top:y,behavior:'smooth'});
+});
+});
+
+document.querySelectorAll('[data-rt]').forEach(t=>{
+t.addEventListener('click',()=>{
+document.querySelectorAll('[data-rt]').forEach(x=>x.classList.remove('act'));
+t.classList.add('act');
+const k=t.getAttribute('data-rt');
+document.querySelectorAll('[data-rp]').forEach(x=>x.classList.remove('act'));
+const tgt=document.querySelector('[data-rp="'+k+'"]');
+if(tgt)tgt.classList.add('act');
+});
+});
+
+document.querySelectorAll('.nav-link, .nav-brand').forEach(a=>{
+a.addEventListener('click',e=>{
+const h=a.getAttribute('href');
+if(h&&h.startsWith('#')){
+e.preventDefault();
+const tgt=document.querySelector(h);
+if(tgt)window.scrollTo({top:Math.max(0,tgt.offsetTop-72),behavior:'smooth'});
+}
+});
+});
+})();
+</script>
+
+</body>
+</html>
